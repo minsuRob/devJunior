@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. HTML과 JavaScript의 만남 2 (이벤트)</title>
+    <style>
+        body {background-color: white; color: black;}
+    </style>
+</head>
+<body>
+    <h1>input속 이벤트(속성) 확인하기</h1>
+    <p>input속 속성은 onclick, onchange, onkeydown 등 다양함 </p>
+    <p>속성 값은 웹 브라우저가 기억하고 있으며 행동을 하면 실행 하며 이를 이벤트라고 함</p>
+    <hr>
+
+    <input type="button" value="hi" onclick="alert('hi')">
+    <p>클릭하면 이벤트가 실행 함</p>
+    <hr>
+    
+    <input type="text" onchange="alert('changed')">
+    <p>입력한 내용이 변했을 때 실행하는 이벤트 </p>
+    <p>단 내용의 변함이 없으면 실행하지 않음</p>
+    <hr>
+
+    <input type="text" onkeydown="alert('key down!')">
+    <p>키를 누르면 이벤트를 실행 함</p> 
+    <hr>
+
+    <h1>web2_javascript_2.html속 내용을 다시 한 번 살펴보자</h1>
+    <input type="button" value="night" onclick="
+    document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+    ">
+
+    <input type="button" value="day" onclick="
+    document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+    ">
+</body>
+</html>
