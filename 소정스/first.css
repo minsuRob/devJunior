@@ -1,0 +1,20 @@
+h1 {
+    color : green;
+    text-align: center;
+}
+a {
+    text-align: end;
+}
+b {
+    font-size: 15px;
+
+}
+#grid {
+    border:5px solid black;
+    display:grid;
+    grid-template-columns: 150px 1fr;
+}
+@media(min-width: 800px) {
+    p {
+        display: none;
+    }
