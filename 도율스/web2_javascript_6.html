@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. 데이터타입 - 문자열과 숫자</title>
+    <style>
+        body {background-color: white; color: black;}
+    </style>
+</head>
+<body>
+    <h1>데이터타입 문자열과 숫자를 알아보자</h1>
+    <h3>javascript에는 6개의 데이터 타입과 1개의 객체가 있다.</h3>
+    <ol>
+        <li>Boolean</li>
+        <li>Null</li>
+        <li>Undefined</li>
+        <hr>
+        <li>Number</li>
+        <li>String</li>
+        <hr>
+        <li>Symbol</li>
+        <li>and Object</li>
+    </ol>
+    
+    <br>
+
+    <h3>익숙한 데이터타입인 문자열(String)과 숫자(Number)를 파악해보자 </h3>
+    
+    <br>
+
+    <h3>숫자</h3>
+    <p>alert(1); 1이라는 경고창을 생성함</p>
+    <p>alert(1+1); 1+1이라는 연산자를 통해 2라는 값을 지정하여 경고창을 생성함</p>
+    <h3>산술 연산자 종류</h3>
+    <ul>
+        <li>+</li>
+        <li>-</li>
+        <li>*</li>
+        <li>/</li>
+    </ul>
+
+    <hr>
+    <br>
+    <hr>
+    
+    <h3>문자열</h3>
+    <p>"". ''를 통해 문자로 표현</p>
+    <h3>문자열의 속성값</h3>
+    <ul>
+        <li>.length(): 문자열의 글자가 몇 글자인지 확인이 가능</li>
+        <li>.toUpperCase(): 소문자를 대문자로 표현</li>
+        <li>.indexOf('o')=4: 문자열의 해당하는 순서 찾기  </li>
+        <li>.trim(): 공백을 삭제</li>
+    </ul>
+
+    <hr>
+    <br>
+    <hr>
+
+    <h3>정리하자면</h3>
+    <p>1+1은 숫자로 표현되며 2라는 값을 나오게 하지만</p>
+    <p>"1"+"1"은 문자값으로 표현되며 "11"라는 값을 나오게 한다.</p>
+    <h2>즉 데이터 타입을 정확하게 표현해야 함</h3>
+
+    <hr>
+    <br>
+    <hr>
+
+    <h3>Tip </h3>
+    <p>java에서 문자열은 string=Properties 와 같다.</p>
+    <p>web2_javascript_2.html속 내용을 살펴보면 ()안에 ''로 문자열을 표현함</p>
+    <input type="button" value="night" onclick="
+    document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+    ">
+
+    <input type="button" value="day" onclick="
+    document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+    ">
+
+
+</body>
+</html>

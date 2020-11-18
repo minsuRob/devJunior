@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7. 변수와 대입 연산자</title>
+    <style>
+        body {background-color: white; color: black;}
+    </style>
+</head>
+<body>
+    <h1>변수와 대입 연산자의 관계</h1>
+    <p>변수란 바뀔 수 있는 값</p>
+    <p>x=1;</p>
+    <p>y=1;</p>
+    <p>x+y;을 하면 2라는 값이 출력됨 거기에</p>
+    <p>x=1000;라는 값을 지정했을때</p>
+    <p>x+y;는 1001이라는 값이 출력됨</p>
+
+    <hr>
+    <p>x는 변수(variable)</p>
+    <p>=는 대입 연산자라고 하며 좌항과 우항을 결합하여 우항의 값을 만들어 낸다.</p>
+
+    <hr>
+    <p>숫자는 바뀌지 않는 상수(constant)라고 하며</p>
+    <p>1=2;를 하면 오류가 나온다.</p>
+
+    <hr>
+    <h3>Tip</h3>
+    <p>변수를 사용하려면 var을 사용하는 것이 좋은 습관이다.</p>
+    <p>shift+enter를 누르면 값을 출력하지 않고 넘길 수 있음</p>
+
+    <hr>
+    <p>많은 내용의 글 속에서 원하는 글로 변경하기 편리하다.</p>
+    <p>많은 값 사이에 지속적으로 바꾸고자 하는 내용이 있으면name = 'egoing';와 같은 변수를 활용하면 편리하다.</p>
+
+    <hr>
+    <p>web2_javascript_2.html속 내용을 살펴보면 대입연산자 =가 'black'이라는 값을 일종의 backgroundColor라는 변수 값이 된 것</p>
+    <input type="button" value="night" onclick="
+    document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+    ">
+
+    <input type="button" value="day" onclick="
+    document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+    ">
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. 수업의 목적</title>
+    <style>
+        body {background-color: white; color: black;}
+    </style>
+</head>
+<body>
+    <h1>야간모드 주간모드를 버튼을 통해서 구현하기</h1>
+    <h3>Tip!</h3>
+    <p>웹브라우저는 출력 후 자기자신을 변경 할 수 없음</p>
+    <p>크롬 검색을 통해 Elements에서 원하는 부분을 클릭하여 tag확인이 가능</p>
+    <p>Style 변경</p>
+    <input type="button" value="night" onclick="
+    document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+    ">
+
+    <input type="button" value="day" onclick="
+    document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+    ">
+</body>
+</html>
