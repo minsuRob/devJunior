@@ -1,0 +1,5 @@
+EJS(Embedded JavaScript) 
+Express에서 Dynamic Website(동적 사이트)를 만들기 위해 template으로 사용되는 파일(확장자 .ejs)
+
+EJS 사용하기 위해서 NPM으로 ejs package 설치해야함
+//npm install --save ejs
