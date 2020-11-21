@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16. 리팩토링(refactoring)</title>
+</head>
+<body>
+    <h3>조건문을 활용한 버튼 구현</h3>
+    <input id="night_day" type="button" value="night" onclick="
+    if(document.querySelector( '#night_day').value === 'night') { 
+        document.querySelector('body').style.backgroundColor = 'black';
+        document.querySelector('body').style.color = 'white';
+        document.querySelector( '#night_day').value = 'day';
+    } else {
+        document.querySelector('body').style.backgroundColor = 'white';
+        document.querySelector('body').style.color = 'black';
+        document.querySelector( '#night_day').value = 'night';
+    }
+    ">
+    <h3>유지보수가 편리하게 하기 위해 조건문을 this라는 키워드를 이용하여 문장을 간결하게 바꿔 버튼 구현</h3>
+    <input type="button" value="night" onclick="
+    if(this.value === 'night') { 
+        document.querySelector('body').style.backgroundColor = 'black';
+        document.querySelector('body').style.color = 'white';
+        this.value = 'day';
+    } else {
+        document.querySelector('body').style.backgroundColor = 'white';
+        document.querySelector('body').style.color = 'black';
+        this.value = 'night';
+    }
+    ">
+    <h3>target이라는 변수를 이용하여 중복된 문장을 간결하게 바꿔 버튼 구현</h3>
+    <input type="button" value="night" onclick="
+    var target = document.querySelector('body');
+    if(this.value === 'night') { 
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        this.value = 'day';
+    } else {
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        this.value = 'night';
+    }
+    ">
+</body>
+</html>
