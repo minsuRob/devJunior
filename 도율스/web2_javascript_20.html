@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20. 배열과 반복문</title>
+</head>
+<body>
+    <h1>Loop & Array</h1>
+    <script>
+        var coworkers = ['egoing', 'leezche', 'duru', 'taeho', 'graphittie'];
+    </script>
+    <h2>Co workers</h2>
+    <ul>
+        <script>
+            var i = 0;
+            while (i < coworkers.length) {
+                document.write('<li><a href="http://a.com/'+coworkers[i]+'">'+coworkers[i]+'</a></li>');
+                i = i + 1;
+            }
+        </script> <!--배열의 값이 바뀌면 반복문도 바뀔 수 있도록 .lenth를 씀-->
+    </ul>
+    <h2>Co workers</h2>
+    <ul>
+        <li>egoing</li>
+        <li>leezche</li>
+        <li>duru</li>
+        <li>taeho</li>
+    </ul>
+</body>
+</html>

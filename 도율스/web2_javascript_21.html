@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21. 배열과 반복문의 활용</title>
+</head>
+<body>
+    <h1><a href="index.html">WEB</a></h1>
+
+    <input type="button" value="night" onclick="
+    var target = document.querySelector('body');
+    if(this.value === 'night') { 
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        this.value = 'day';
+
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while (i < alist.length){
+            alist[i].style.color = 'powderblue';
+            i = i + 1;
+        }
+    } else {
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        this.value = 'night';
+    
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while (i < alist.length){
+            alist[i].style.color = 'blue';
+            i = i + 1;
+        }
+    }
+    ">
+
+    <ol>
+        <li><a href="1.html">HTML</a></li>
+        <li><a href="2.html">CSS</a></li>
+        <li><a href="3.html">JavaScript</a></li>
+    </ol>
+
+    <!--
+    <script>
+        document.querySelector('a')
+        하나의 a 태그만 가져옴
+
+        document.querySelectorAll('a')
+        a의 배열을 가져옴
+
+        var alist = document.querySelectorAll('a');
+        console.log(alist[0]);
+        (값이) console 창에 출력 
+
+
+        var alist = document.querySelectorAll('a');
+        console.log(alist.length);
+        값을 출력
+
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while (i < alist.length) {
+            console.log(alist[i]);
+            alist[i].style.color = 'powderblue'
+            i = i + 1;
+        }
+        console은 console 창에만 입력
+    </script>
+    -->
+    <p>JavaScript get element by css selector multiple</p>
+
+
+</body>
+</html>
