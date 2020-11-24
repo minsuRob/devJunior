@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22. 함수예고</title>
+
+    <script>
+
+    function nightDayHandler(self){
+        var target = document.querySelector('body');
+    if(self.value === 'night') { 
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        self.value = 'day';
+
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while (i < alist.length){
+            alist[i].style.color = 'powderblue';
+            i = i + 1;
+        }
+    } else {
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        self.value = 'night';
+    
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while (i < alist.length){
+            alist[i].style.color = 'blue';
+            i = i + 1;
+        }
+    }
+    }
+    </script>
+
+</head>
+<body>
+    <p>함수(function)는 코드를 잘 정리해주는 도구</p>
+
+    <input type="button" value="night" onclick="
+        nightDayHandler(this);
+    ">
+
+    <input type="button" value="night" onclick="
+        nightDayHandler(this);
+    ">
+
+</body>
+</html>
