@@ -34,11 +34,42 @@
             <li>21세기기업의 인재상</li>
         </ul>
         <h4>
-            <input type="button" value="블루블루" onclick="
-            document.querySelector('body').style.backgroundColor='cornflowerblue'">
-            <input type="button" value="핑크핑크" onclick="
-            document.querySelector('body').style.backgroundColor='coral'">
+            <input id="블루핑크" type="button" value="블루" onclick="
+            if (document.querySelector('#블루핑크').value === '블루') {
+            document.querySelector('body').style.backgroundColor = 'powderblue';
+            document.querySelector('body').style.color = 'black';
+            document.querySelector('#블루핑크').value ='핑크';
+               }   else {
+            document.querySelector('body').style.backgroundColor = 'coral';
+               document.querySelector('body').style.color= 'white';
+               document.querySelector('#블루핑크').value ='블루';       
+        }
+        ">
         </h4>
+        <h5>conditonal statements</h5>
+        <h6>Program</h6>
+        <script>
+            document.write("1<br>");
+            document.write("2<br>");
+            document.write("3<br>");
+            document.write("4<br>");
+        </script>
+        <h2>IF-true</h2>
+        <script>
+            document.write("1<br>");
+            if(true){
+            document.write("2<br>");
+            } else {document.write("3<br>");
+            } document.write("4<br>"); 
+        </script>
+        <h2>IF-false</h2>
+        <script>
+            document.write("1<br>");
+            if(false){
+            document.write("2<br>");
+            } else {document.write("3<br>");
+            } document.write("4<br>"); 
+        </script>
 
     </body>
 </html>
