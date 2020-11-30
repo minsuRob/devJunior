@@ -55,6 +55,12 @@ app.get('/contacts', function(req, res){ // '/contacts'에 Get 요청이 오는 
   Contact.find({}, function(err, contacts){ 
     if(err) return res.json(err); //에러가 있다면 json 형태로 웹 브라우저에 표시
     res.render('contacts/index', {contacts:contacts}); //에러가 없다면 검색결과를 받아 /views/contacts/index.ejs를 render함
+    /* 
+       7abfe97 - MEAN Stack_주소록 만들기 프로젝트 커밋_2
+       승민스가 ejs에서 데이터 연계에 대해 이해가 되지않는다고하여 확인해본 사항.
+       DB에서 얻어온 값을 해당 Line에서 index.ejs로 넘겨주는 중.
+       Author : minsu.lee
+    */
   });
 });
 
