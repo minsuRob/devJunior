@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chapt.7_5</title>
+    <script>
+      function nightDayHandler(self) {
+        var target = document.querySelector("body");
+        if (self.value === "night") {
+          target.style.backgroundColor = "black";
+          target.style.color = "white";
+          self.value = "day";
+          var alist = document.querySelectorAll("a");
+          var i = 0;
+          while (i < alist.length) {
+            alist[i].style.color = "powderblue";
+            i = i + 1;
+          }
+        } else {
+          target.style.backgroundColor = "white";
+          target.style.color = "black";
+          self.value = "night";
+          var alist = document.querySelectorAll("a");
+          var i = 0;
+          while (i < alist.length) {
+            alist[i].style.color = "blue";
+            i = i + 1;
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1><a href="index.html">WEB</a></h1>
+    <input
+      id="night_day"
+      type="button"
+      value="night"
+      onclick="
+      nightDayHandler(this);
+    "
+    />
+    <input
+      id="night_day"
+      type="button"
+      value="night"
+      onclick="
+      nightDayHandler(this);
+    "
+    />
+    <ol>
+      <li><a href="1.html">HTML</a></li>
+      <li><a href="2.html">CSS</a></li>
+      <li><a href="3.html">JavaScript</a></li>
+    </ol>
+    <h2>JavaScript</h2>
+    <p>
+      이해가 잘 안돼. 어려움 살짝. 파라미터, 아규먼트는 알겠는데 따옴표는 어떨때
+      쓰는건지 + 는 언제 쓰는건지 몰게씀 this는 대충 알겠는데 self는 자신을
+      포함한 함수가 적용되는 태그 자신을 의미하는건가?
+    </p>
+  </body>
+</html>
