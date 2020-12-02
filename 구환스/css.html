@@ -11,12 +11,6 @@
         color:black;
         text-decoration:none;
       }
-      #active {
-        color:red;
-      }
-      .saw {
-        color:gray;
-      }
       h1 {
         font-size: 90px;
         text-align: center;
@@ -30,15 +24,41 @@
         margin:0;
         padding:20px;
       }
+      #grid{
+        display:grid;
+        grid-template-columns: 150px 1fr;
+      }
+      #grid ol{
+        padding-left:33px;
+      }
+      #grid #article{
+        padding-left:25px;
+      }
+      @media(max-width:800px){
+        #grid{
+          display:block;
+        }
+        ol{
+          border-right:none;
+        }
+        h1 {
+          border-bottom: none;
+        }
+      }
     </style>
     </head>
     <body>
       <h1><a href="index.html">WEB</a></h1>
-      <ol>
-        <li><a href="html.html" class="saw">HTML</a></li>
-        <li><a href="css.html" class="saw" id="active">CSS</a></li>
-        <li><a href="javascript.html">JavaScript</a></li>
-      </ol>
-      <p>CSS 영역</p>
+      <div id="grid">
+        <ol>
+          <li><a href="html.html">HTML</a></li>
+          <li><a href="css.html">CSS</a></li>
+          <li><a href="javascript.html">JavaScript</a></li>
+        </ol>
+        <div id="article">
+          <h2>CSS 영역</h2>
+          <p>CSS 어쩌구저쩌꾸</p>
+        </div>
+      </div>
     </body>
 </html>
