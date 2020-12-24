@@ -15,5 +15,14 @@ $$title = 'PHP tutorial';
 echo '<br />';
 echo $subject;
 ?>
+
+<?php
+echo $_GET['id'];
+?>
+<?php
+echo '<br />';
+echo $_GET['id'].','.$_GET['password'];
+?>
+
 </body>
 </html>
