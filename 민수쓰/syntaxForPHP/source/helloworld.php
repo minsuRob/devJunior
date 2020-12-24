@@ -1,11 +1,38 @@
 <html>
 <body>
-echo "Hello world";
 <?php
-var_dump(6.1);
+$a=1;
+echo $a+1; #2
+echo "<br />";
+$a=2;
+print $a+1; #3
 ?>
+
 <?php
-echo "그는 \"안녕하세요 라고 말했다\"";
+$first = "coding";
+echo $first." everybody";
 ?>
+
+<?php
+    $a = 100;
+    print $a.'<br />';
+    $a = $a + 10;
+    print $a.'<br />';
+    $a = $a / 10;
+    print $a.'<br />';
+    $a = $a - 10;
+    print $a.'<br />';
+    $a = $a * 10 ;    
+    print $a.'<br />';
+?>
+
+
+<?php
+print '<br />';
+define('TITLE', 'PHP Tutorial');
+echo TITLE;
+define('TITLE', 'JAVA Tutorial');
+?>
+
 </body>
 </html>
