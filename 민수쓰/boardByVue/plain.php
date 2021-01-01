@@ -49,6 +49,13 @@
 </style>
 
 <body>
+    <div style="width:80%; margin:0px auto; margin-top:50px; text-align:right">
+        <button id="tableButton1" v-bind:style="{'background-color':bgcolor, 'border':'0px' ,'color':fontcolor}"
+            v-on:click="checkActivate">자유게시판 보기</button>
+        <button id="tableButton2" v-bind:style="{'background-color':bgcolor, 'border':'0px' ,'color':fontcolor}"
+            v-on:click="checkActivate">공지사항 보기</button>
+    </div>
+
     <table style="width: 80%;margin-top: 50px" align="center" id="tableBoard">
         <thead>
             <tr class="clBoardHeader">
@@ -76,6 +83,50 @@ $(document).ready(function() {
             boardData: <?=$boardResult?>
         }
     });
+
+    var activeBgColor = '#666666';
+    var deactiveBgColor = '#dddddd';
+    var grayColor = '#ddddd1';
+
+    var tblBtn1 = new Vue({
+        el: '#tableButton1',
+        data: {
+            bgcolor: activeBgColor,
+            fontcolor: 'white',
+            isActive: true
+        },
+        methods: {
+            checkActivate: function() {
+                if (this.isActive === false) {
+                    this.bgcolor = activeBgColor;
+                    this.isActive = true;
+                    tblBtn2.bgcolor = grayColor;
+                    tblBtn2.isActive = false;
+                }
+            }
+        }
+    });
+
+    var tblBtn2 = new Vue({
+        el: '#tableButton2',
+        data: {
+            bgcolor: deactiveBgColor,
+            fontcolor: 'blue',
+            isActive: false
+        },
+        methods: {
+            checkActivate: function() {
+                if (this.isActive === false) {
+                    this.bgcolor = activeBgColor;
+                    this.isActive = true;
+                    tblBtn1.bgcolor = grayColor;
+                    tblBtn1.isActive = false;
+                }
+            }
+        }
+    });
+
+
 });
 </script>
 
