@@ -10,6 +10,10 @@
         $result = mysqli_query($db_link, $SQL);
         $boardResult = dbresultTojson($result);
 
+        $SQL = " select code, title, contents, name, adddate from notice order by adddate desc ";
+        $result = mysqli_query($db_link, $SQL);
+        $noticeResult = dbresultTojson($result);
+
         function dbresultTojson($res)
         {
             $ret_arr = array();
@@ -56,31 +60,41 @@
             v-on:click="checkActivate">공지사항 보기</button>
     </div>
 
-    <table style="width: 80%;margin-top: 50px" align="center" id="tableBoard">
-        <thead>
-            <tr class="clBoardHeader">
-                <th style="width: 70px;">No.</th>
-                <th style="width: 120px;">이름</th>
-                <th>제목</th>
-                <th style="width: 170px;">날짜</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(eachData, index) in boardData" class="clBoardBody">
-                <td align="center">{{index+1}}</td>
-                <td align="center">{{eachData.name}}</td>
-                <td>{{eachData.title}}</td>
-                <td align="center">{{eachData.adddate}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="tableBoard" style="width: 80%;margin: 0px auto">
+        <div style="margin-bottom: 5px;">
+            <input type=text v-model="searchName" style="width: 90%; height: 25px;">
+        </div>
+        <table style="width: 100%;" align="center">
+            <thead>
+                <tr class="clBoardHeader">
+                    <th style="width: 70px;">No.</th>
+                    <th style="width: 120px;">이름</th>
+                    <th>제목</th>
+                    <th style="width: 170px;">날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(eachData, index) in boardData" class="clBoardBody" v-if="eachData.title.includes(searchName)">
+                    <td align="center">{{index+1}}</td>
+                    <td align="center">{{eachData.name}}</td>
+                    <td>{{eachData.title}}</td>
+                    <td align="center">{{eachData.adddate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 <script>
 $(document).ready(function() {
+
+    var dbdataBoard = <?=$boardResult?>;
+    var dbdataNotice = <?=$noticeResult?>;
+
     var app4 = new Vue({
         el: '#tableBoard',
         data: {
-            boardData: <?=$boardResult?>
+            boardData: dbdataBoard,
+            searchName: ''
         }
     });
 
@@ -102,6 +116,7 @@ $(document).ready(function() {
                     this.isActive = true;
                     tblBtn2.bgcolor = grayColor;
                     tblBtn2.isActive = false;
+                    app4.boardData = dbdataBoard;
                 }
             }
         }
@@ -121,6 +136,7 @@ $(document).ready(function() {
                     this.isActive = true;
                     tblBtn1.bgcolor = grayColor;
                     tblBtn1.isActive = false;
+                    app4.boardData = dbdataNotice;
                 }
             }
         }
