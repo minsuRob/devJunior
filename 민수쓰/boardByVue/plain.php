@@ -127,10 +127,15 @@
 <script>
 $(document).ready(function() {
 
+    var app4 = null;
+    var tblBtn1 = null;
+    var tblBtn2 = null;
+    var boardView = null;
+
     var dbdataBoard = <?=$boardResult?>;
     var dbdataNotice = <?=$noticeResult?>;
 
-    var app4 = new Vue({
+    app4 = new Vue({
         el: '#tableBoard',
         data: {
             boardData: dbdataBoard,
@@ -143,7 +148,7 @@ $(document).ready(function() {
                 boardView.boardViewTitle = boardViewData.title;
                 boardView.boardViewContents = boardViewData.contents;
                 boardView.boardViewDate = boardViewData.adddate;
-                $("#boardView").bPopup(); 
+                $("#boardView").bPopup();
 
 
             },
@@ -154,7 +159,7 @@ $(document).ready(function() {
     var deactiveBgColor = '#dddddd';
     var grayColor = '#ddddd1';
 
-    var tblBtn1 = new Vue({
+    tblBtn1 = new Vue({
         el: '#tableButton1',
         data: {
             bgcolor: activeBgColor,
@@ -174,7 +179,7 @@ $(document).ready(function() {
         }
     });
 
-    var tblBtn2 = new Vue({
+    tblBtn2 = new Vue({
         el: '#tableButton2',
         data: {
             bgcolor: deactiveBgColor,
@@ -194,7 +199,7 @@ $(document).ready(function() {
         }
     });
 
-    var boardView = new Vue({
+    boardView = new Vue({ // vPopup element
         el: '#boardView',
         data: {
             boardViewName: '',
@@ -217,6 +222,6 @@ $(document).ready(function() {
 
 
 });
- </script>
+</script>
 
 </html>
