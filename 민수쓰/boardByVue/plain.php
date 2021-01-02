@@ -68,7 +68,7 @@
 <body>
     <div style="width:80%; margin:0px auto; margin-top:50px; text-align:right">
         <button id="tableButton1" v-bind:style="{'background-color':bgcolor, 'border':'0px' ,'color':fontcolor}"
-            v-on:click="checkActivate">자유 게시판 보기</button>
+            v-on:click="checkActivate">자유게시판 보기</button>
         <button id="tableButton2" v-bind:style="{'background-color':bgcolor, 'border':'0px' ,'color':fontcolor}"
             v-on:click="checkActivate">공지사항 보기</button>
     </div>
@@ -125,12 +125,13 @@
 
 </body>
 <script>
+var app4 = null;
+var tblBtn1 = null;
+var tblBtn2 = null;
+var boardView = null;
+
 $(document).ready(function() {
 
-    var app4 = null;
-    var tblBtn1 = null;
-    var tblBtn2 = null;
-    var boardView = null;
 
     var dbdataBoard = <?=$boardResult?>;
     var dbdataNotice = <?=$noticeResult?>;
