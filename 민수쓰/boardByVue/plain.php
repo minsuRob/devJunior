@@ -34,9 +34,6 @@
 
             //echo "boardData:" + $boardData;
             //echo "<br>";
-            
-            
-            
             $tableName = "";
             if ($_POST["boardNm"] == "free") {
                 $tableName = "board";
