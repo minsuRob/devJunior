@@ -84,15 +84,17 @@
                     <th style="width: 120px;">이름</th>
                     <th>제목</th>
                     <th style="width: 170px;">날짜</th>
+                    <th style="width: 80px;">View</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(eachData, index) in boardData" class="clBoardBody"
                     v-if="eachData.title.includes(searchName)">
                     <td align="center">{{index+1}}</td>
-                    <td align="center">{{eachData.name}}</td>
-                    <td v-on:click="clickTitle(eachData)"> {{eachData.title}}</td>
+                    <td align="center"><input type=text v-model="eachData.name" style="width:90%"> </td>
+                    <td><input type=text v-model="eachData.title" style="width:90%"></td>
                     <td align="center">{{eachData.adddate}}</td>
+                    <td align="center"><Button v-on:click="clickTitle(eachData)">View</Button></td>
                 </tr>
             </tbody>
         </table>
