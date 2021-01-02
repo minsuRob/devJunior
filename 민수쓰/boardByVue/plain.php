@@ -52,7 +52,7 @@
                 $title = $boardData[$i]->title;
                 $contents = $boardData[$i]->contents;
                 $name = $boardData[$i]->name;
-                echo "1 " . $code . "2. " . $title . "3 " . $contents . "4 " . $name; 
+                echo "1 " . $code . "2. " . $title . "3 " . $contents . "4 " . $name; // current alert only.
             }
 
             exit;
