@@ -14,8 +14,7 @@
         $result = mysqli_query($db_link, $SQL);
         $noticeResult = dbresultTojson($result);
 
-        function dbresultTojson($res)
-        {
+        function dbresultTojson($res) {
             $ret_arr = array();
     
             while($row = mysqli_fetch_array($res))
@@ -53,24 +52,23 @@
 
 .clViewHeader th {
     width: 10%;
-    float:left;
-    padding-left:12px;
-    margin-top:5px;
+    float: left;
+    padding-left: 12px;
+    margin-top: 5px;
 }
 
 .clViewContent th {
     width: 80%;
-    float:left;
-    padding-left:7px;
-    margin-top:5px;
+    float: left;
+    padding-left: 7px;
+    margin-top: 5px;
 }
-
 </style>
 
 <body>
     <div style="width:80%; margin:0px auto; margin-top:50px; text-align:right">
         <button id="tableButton1" v-bind:style="{'background-color':bgcolor, 'border':'0px' ,'color':fontcolor}"
-            v-on:click="checkActivate">자유게시판 보기</button>
+            v-on:click="checkActivate">자유 게시판 보기</button>
         <button id="tableButton2" v-bind:style="{'background-color':bgcolor, 'border':'0px' ,'color':fontcolor}"
             v-on:click="checkActivate">공지사항 보기</button>
     </div>
