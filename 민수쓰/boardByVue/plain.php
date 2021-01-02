@@ -27,6 +27,37 @@
     
             return urldecode(json_encode($ret_arr));
         }
+
+        if ($_POST["mode"] == "allSave") {
+            //echo "Valid excution";
+            $boardData = json_decode($_POST["boardData"]);
+
+            //echo "boardData:" + $boardData;
+            //echo "<br>";
+            
+            
+            
+            $tableName = "";
+            if ($_POST["boardNm"] == "free") {
+                $tableName = "board";
+            } else if($_POST["boardNm"] == "notice") {
+                $tableName = "notice";
+            }
+            
+            //echo "tableName:" + $tableName;
+            //echo "<br>";
+            for($i=0; $i < count($boardData); $i++) {
+                
+                $code = $boardData[$i]->code;
+                $title = $boardData[$i]->title;
+                $contents = $boardData[$i]->contents;
+                $name = $boardData[$i]->name;
+                echo "1 " . $code . "2. " . $title . "3 " . $contents . "4 " . $name; 
+            }
+
+            exit;
+        }
+        
 ?>
 <!DOCTYPE html>
 <html>
@@ -98,6 +129,10 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <div id="boardView" style="width:80%; padding-top:24px; margin:0px auto; text-align:right">
+        <Button onclick="javascript:allSave();">All save</Button>
     </div>
 
     <div id="boardView"
@@ -220,9 +255,38 @@ $(document).ready(function() {
             }
         }
     });
-
-
 });
+
+function allSave() {
+    var sendingData = app4.boardData;
+    var boardNm = "";
+    if (tblBtn1.isActive) {
+        boardNm = "free";
+        //sendingData  
+    } else {
+        boardNm = "notice";
+    }
+
+
+    $.ajax({
+            type: 'POST',
+            url: "plain.php",
+            data: {
+                'mode': 'allSave',
+                'boardNm': boardNm,
+                'boardData': JSON.stringify(sendingData)
+            },
+            dataType: 'text',
+            cache: false,
+            async: false
+        })
+        .done(function(result) {
+            alert("success : " + result);
+        })
+        .fail(function(request, status, error) {
+            alert("error Info : " + error + ", status : " + status);
+        });
+}
 </script>
 
 </html>
