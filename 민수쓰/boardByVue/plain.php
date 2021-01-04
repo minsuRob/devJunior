@@ -41,8 +41,8 @@
                 $tableName = "notice";
             }
             
-            //echo "tableName:" + $tableName;
-            //echo "<br>";
+
+
             for($i=0; $i < count($boardData); $i++) {
                 
                 $code = $boardData[$i]->code;
@@ -50,7 +50,15 @@
                 $contents = $boardData[$i]->contents;
                 $name = $boardData[$i]->name;
                 $changed = $boardData[$i]->changed;
-
+                
+                // new contents is insert query
+                if (!$code) {
+                    $SQL = "insert into ".$tableName." (title, name, adddate) values('".stripslashes($title)."', '".stripslashes($name)."', now())";
+                    mysqli_query($db_link, $SQL);
+                    //echo "1 " . $code . "2. " . $title . "3 " . $contents . "4 " . $name; // current alert only.
+                }
+    
+                // asis contents is update query
                 if ($changed == "Y") {
                     $SQL = "update ".$tableName." set title='".stripslashes($title)."', name='".stripslashes($name)."' where code='".$code."' ";
                     mysqli_query($db_link, $SQL);
@@ -109,6 +117,9 @@
     </div>
 
     <div id="tableBoard" style="width: 80%;margin: 0px auto">
+        <div style="margin-bottom:5px">
+            <button v-on:click="insertNewPosting()">새글추가</button>
+        </div>
         <div style="margin-bottom: 5px;">
             <input type=text v-model="searchName" style="width: 90%; height: 25px;">
         </div>
@@ -197,6 +208,17 @@ $(document).ready(function() {
                 //boardView.boardViewDate = boardViewData.adddate;
                 //$("#boardView").bPopup();
             },
+
+            insertNewPosting: function() {
+                this.boardData.push({
+                    "code": "",
+                    "title": "",
+                    "contents": "",
+                    "name": "",
+                    "adddate": "",
+                    "changed": "N"
+                })
+            }
         }
     });
 
@@ -291,8 +313,8 @@ function allSave() {
         })
         .done(function(result) {
             if (result == "OK") {
-            alert("success : " + result);
-            location.herf = "index.php";
+                alert("success : " + result);
+                location.herf = "index.php";
             }
         })
         .fail(function(request, status, error) {
