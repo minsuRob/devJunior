@@ -6,11 +6,11 @@
             'vuedb');
         // mysqli_select_db($db_link,$DB_SNAME); //내부 database 선택
 
-        $SQL = " select code, title, contents, name, adddate from board order by adddate desc ";
+        $SQL = " select code, title, contents, name, adddate, 'N' as changed from board order by adddate desc ";
         $result = mysqli_query($db_link, $SQL);
         $boardResult = dbresultTojson($result);
 
-        $SQL = " select code, title, contents, name, adddate from notice order by adddate desc ";
+        $SQL = " select code, title, contents, name, adddate, 'N' as changed from notice order by adddate desc ";
         $result = mysqli_query($db_link, $SQL);
         $noticeResult = dbresultTojson($result);
 
@@ -49,8 +49,15 @@
                 $title = $boardData[$i]->title;
                 $contents = $boardData[$i]->contents;
                 $name = $boardData[$i]->name;
-                echo "1 " . $code . "2. " . $title . "3 " . $contents . "4 " . $name; // current alert only.
+                $changed = $boardData[$i]->changed;
+
+                if ($changed == "Y") {
+                    $SQL = "update ".$tableName." set title='".stripslashes($title)."', name='".stripslashes($name)."' where code='".$code."' ";
+                    mysqli_query($db_link, $SQL);
+                    //echo "1 " . $code . "2. " . $title . "3 " . $contents . "4 " . $name; // current alert only.
+                }
             }
+            echo "OK";
 
             exit;
         }
@@ -119,8 +126,10 @@
                 <tr v-for="(eachData, index) in boardData" class="clBoardBody"
                     v-if="eachData.title.includes(searchName)">
                     <td align="center">{{index+1}}</td>
-                    <td align="center"><input type=text v-model="eachData.name" style="width:90%"> </td>
-                    <td><input type=text v-model="eachData.title" style="width:90%"></td>
+                    <td align="center"><input type=text v-model="eachData.name" v-on:change="changedData(eachData)"
+                            style="width:90%"> </td>
+                    <td><input type=text v-model="eachData.title" v-on:change="changedData(eachData)" style="width:90%">
+                    </td>
                     <td align="center">{{eachData.adddate}}</td>
                     <td align="center"><Button v-on:click="clickTitle(eachData)">View</Button></td>
                 </tr>
@@ -128,7 +137,7 @@
         </table>
     </div>
 
-    <div id="boardView" style="width:80%; padding-top:24px; margin:0px auto; text-align:right">
+    <div style="width:80%; padding-top:24px; margin:0px auto; text-align:right">
         <Button onclick="javascript:allSave();">All save</Button>
     </div>
 
@@ -182,8 +191,11 @@ $(document).ready(function() {
                 boardView.boardViewContents = boardViewData.contents;
                 boardView.boardViewDate = boardViewData.adddate;
                 $("#boardView").bPopup();
-
-
+            },
+            changedData: function(boardViewData) {
+                boardViewData.changed = "Y";
+                //boardView.boardViewDate = boardViewData.adddate;
+                //$("#boardView").bPopup();
             },
         }
     });
@@ -278,7 +290,10 @@ function allSave() {
             async: false
         })
         .done(function(result) {
+            if (result == "OK") {
             alert("success : " + result);
+            location.herf = "index.php";
+            }
         })
         .fail(function(request, status, error) {
             alert("error Info : " + error + ", status : " + status);
