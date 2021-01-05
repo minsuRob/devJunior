@@ -31,7 +31,8 @@
         if ($_POST["mode"] == "allSave") {
             //echo "Valid excution";
             $boardData = json_decode($_POST["boardData"]);
-
+            
+            
             //echo "boardData:" + $boardData;
             //echo "<br>";
             $tableName = "";
@@ -41,8 +42,17 @@
                 $tableName = "notice";
             }
             
-
-
+            
+            
+            $delLists = json_decode($_POST["delLists"]);
+            for($i=0; $i < count($delLists); $i++) {
+                $code = $delLists[$i]->code;
+                if($code) {
+                    $SQL = "delete from $tableName where code='".$code."'";
+                    mysqli_query($db_link, $SQL);
+                }
+                
+            }
             for($i=0; $i < count($boardData); $i++) {
                 
                 $code = $boardData[$i]->code;
@@ -142,7 +152,10 @@
                     <td><input type=text v-model="eachData.title" v-on:change="changedData(eachData)" style="width:90%">
                     </td>
                     <td align="center">{{eachData.adddate}}</td>
-                    <td align="center"><Button v-on:click="clickTitle(eachData)">View</Button></td>
+                    <td style="width:160px" align="center">
+                        <Button v-on:click="clickTitle(eachData)">View</Button>
+                        <Button v-on:click="deletePosting(eachData.code, index)">delete</Button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -188,11 +201,15 @@ $(document).ready(function() {
     var dbdataBoard = <?=$boardResult?>;
     var dbdataNotice = <?=$noticeResult?>;
 
+    var delDataBoard = [];
+    var delDataNotice = [];
+
     app4 = new Vue({
         el: '#tableBoard',
         data: {
             boardData: dbdataBoard,
-            searchName: ''
+            searchName: '',
+            delLists: delDataBoard
         },
         methods: {
             clickTitle: function(boardViewData) {
@@ -218,6 +235,14 @@ $(document).ready(function() {
                     "adddate": "",
                     "changed": "N"
                 })
+            },
+
+            deletePosting: function(code, index) {
+                this.boardData.splice(index, 1);
+
+                this.delLists.push({
+                    "code": code
+                })
             }
         }
     });
@@ -241,6 +266,7 @@ $(document).ready(function() {
                     tblBtn2.bgcolor = grayColor;
                     tblBtn2.isActive = false;
                     app4.boardData = dbdataBoard;
+                    app4.delLists = delDataBoard;
                 }
             }
         }
@@ -261,6 +287,7 @@ $(document).ready(function() {
                     tblBtn1.bgcolor = grayColor;
                     tblBtn1.isActive = false;
                     app4.boardData = dbdataNotice;
+                    app4.delLists = delDataNotice;
                 }
             }
         }
@@ -305,7 +332,8 @@ function allSave() {
             data: {
                 'mode': 'allSave',
                 'boardNm': boardNm,
-                'boardData': JSON.stringify(sendingData)
+                'boardData': JSON.stringify(sendingData),
+                'delLists': JSON.stringify(app4.delLists)
             },
             dataType: 'text',
             cache: false,
