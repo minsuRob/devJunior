@@ -46,19 +46,6 @@
         }
         ">
         </h4>
-        <h5>conditonal statements</h5>
-        <script>
-            document.write("1<br");
-            document.write("2<br");
-            document.write("3<br");
-        </script>
-        <h6>Program</h6>
-        <script>
-            document.write("1<br>");
-            document.write("2<br>");
-            document.write("3<br>");
-            document.write("4<br>");
-        </script>
         <h2>IF-true</h2>
         <script>
             document.write("1<br>");
@@ -86,5 +73,29 @@
         this.value ='옐로옐로';       
     }
     ">
+    <script>
+        document.write('<li>1</li>');
+        var i = 0;
+        while(i < 2){
+        document.write('<li>2</li>');
+        document.write('<li>3</li>');
+        i = i + 1;
+        }
+        document.write('<li>4</li>');
+    </script>
+    <h9>빡빡이의 삶은 어떨까</h9>
+    <script>
+        var coworkers = ['스님','홍석천','삭발','쉬원한 삶'];
+    </script>
+    <ul>
+       <script>
+           var i = 0;
+           while(i < coworkers.length){
+           document.write('<li><a href="https://search.naver.com/search.naver?where=image&sm=tab_jum&query=%EC%82%AD%EB%B0%9C'+coworkers[i]+'">'+coworkers[i]+'</li>');
+           i = i + 1 ;
+           }
+    </script>
+           </ul>
+
     </body>
 </html>
