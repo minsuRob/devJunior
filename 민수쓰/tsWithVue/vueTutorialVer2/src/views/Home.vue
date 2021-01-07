@@ -1,15 +1,16 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img alt="Vue logo" src="../assets/logo.png" />
     <message></message>
     <children :parentMessage="message"></children>
+    <button @click="changeMsg">메세지 바꿔용</button>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import message from '@/components/message.vue'; // @ is an alias to /src
-import children from '@/components/children.vue'; // @ is an alias to /src
+import { Component, Vue } from "vue-property-decorator";
+import message from "@/components/message.vue"; // @ is an alias to /src
+import children from "@/components/children.vue"; // @ is an alias to /src
 
 @Component({
   components: {
@@ -18,7 +19,9 @@ import children from '@/components/children.vue'; // @ is an alias to /src
   },
 })
 export default class Home extends Vue {
-  message:string = 'hello world';
-
+  message: string = "hello world";
+  changeMsg() {
+    this.message = "change";
+  }
 }
 </script>
