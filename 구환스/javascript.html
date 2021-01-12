@@ -3,6 +3,32 @@
 <head>
   <title>WEB - CSS</title>
     <meta charset="urf-8">
+    <script>
+      function nightDayController(self){
+        let target = document.querySelector('body');
+        if (self.value === 'night') {
+          target.style.backgroundColor = 'black';
+          target.style.color = 'white';
+          self.value = 'day';
+
+          let alist = document.querySelectorAll('a');
+          for (let i = 0; i < alist.length; i++) {
+            alist[i].style.color = 'silver';
+          }
+
+        } else {
+          target.style.backgroundColor = 'white';
+          target.style.color = 'black';
+          self.value = 'night';
+
+          let alist = document.querySelectorAll('a');
+          for (let i = 0; i < alist.length; i++) {
+            alist[i].style.color = 'blue';
+          }
+
+        }
+      }
+    </script>
     </head>
     <body style="background-color:white;">
       <h1><a href="index.html">WEB</a></h1>
@@ -15,28 +41,7 @@
         document.querySelector('body').style.color = 'green';
         ">
         <input type="button" value="night" onclick="
-          let target = document.querySelector('body');
-          if (this.value === 'night') {
-            target.style.backgroundColor = 'black';
-            target.style.color = 'white';
-            this.value = 'day';
-
-            let alist = document.querySelectorAll('a');
-            for (let i = 0; i < alist.length; i++) {
-              alist[i].style.color = 'silver';
-            }
-
-          } else {
-            target.style.backgroundColor = 'white';
-            target.style.color = 'black';
-            this.value = 'night';
-
-            let alist = document.querySelectorAll('a');
-            for (let i = 0; i < alist.length; i++) {
-              alist[i].style.color = 'blue';
-            }
-
-          }
+          nightDayController(this)
         ">
       <ol>
         <li><a href="#">HTML</a></li>
