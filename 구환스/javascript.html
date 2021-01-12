@@ -20,10 +20,22 @@
             target.style.backgroundColor = 'black';
             target.style.color = 'white';
             this.value = 'day';
+
+            let alist = document.querySelectorAll('a');
+            for (let i = 0; i < alist.length; i++) {
+              alist[i].style.color = 'silver';
+            }
+
           } else {
             target.style.backgroundColor = 'white';
             target.style.color = 'black';
             this.value = 'night';
+
+            let alist = document.querySelectorAll('a');
+            for (let i = 0; i < alist.length; i++) {
+              alist[i].style.color = 'blue';
+            }
+
           }
         ">
       <ol>
