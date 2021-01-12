@@ -9,6 +9,10 @@
     $result = mysqli_query($db_link, $SQL);
     $boardResult = dbresultTojson($result);
 
+    $SQL = " select code, title, contents, name, adddate from notice order by adddate desc ";
+    $result = mysqli_query($db_link, $SQL);
+    $noticeResult = dbresultTojson($result);
+
     function dbresultTojson($res)
     {
         $ret_arr = array();
@@ -48,65 +52,87 @@
 </style>
 
 <body>
-    <div style="width:80%; margin:0px auto; margin-top:50px; text-align:right;">
+
+    <div style="width:80%; margin:0px auto; margin-top:50px; text-align:right">
         <button id="tableButton1" v-bind:style="{'background-color':bgcolor, 'border':'0px', 'color':fontColor}" v-on:click="checkActivate">자유게시판</button>
         <button id="tableButton2" v-bind:style="{'background-color':bgcolor, 'border':'0px', 'color':fontColor}" v-on:click="checkActivate">공지사항</button>
     </div>
-    <table style="width: 80%;margin-top: 50px" align="center" id="tableBoard">
-        <thead>
-            <tr class="clBoardHeader">
-                <th style="width: 70px;">No.</th>
-                <th style="width: 120px;">이름</th>
-                <th>제목</th>
-                <th style="width: 170px;">날짜</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(eachData, index) in boardData" class="clBoardBody">
-                <td align="center">{{index+1}}</td>
-                <td align="center">{{eachData.name}}</td>
-                <td>{{eachData.title}}</td>
-                <td align="center">{{eachData.adddate}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="tableBoard" style="width: 80%; margin:0px auto; padding:20px">
+        <div style="margin-bottom: 5px">
+            <input type="text" v-model="searchName" style="width: 90%; height: 25px">
+        </div>
+
+        <table style="width: 100%" align="center">
+            <thead>
+                <tr class="clBoardHeader">
+                    <th style="width: 70px;">No.</th>
+                    <th style="width: 120px;">이름</th>
+                    <th>제목</th>
+                    <th style="width: 170px;">날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(eachData, index) in boardData" class="clBoardBody" v-if="eachData.title.includes(searchName)">
+                    <td align="center">{{index+1}}</td>
+                    <td align="center">{{eachData.name}}</td>
+                    <td>{{eachData.title}}</td>
+                    <td align="center">{{eachData.adddate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 <script>
 $(document).ready(function() {
-    var actvieBgColor = '#666666';
-    var deactiveBgColor = '#dddddd';
-    var btn1 = new Vue({
-        el: '#tableButton1',
-        data: {bgcolor:actvieBgColor, fontColor: 'white', isActive: true},
-        methods: {
-            checkActivate: function() {
-                if(this.isActive === false) {
-                    this.bgcolor = actvieBgColor;
-                    this.isActive = true;
-                    btn2.bgcolor = deactiveBgColor;
-                    btn2.isActive = false;
-                }
-            }
-        }
-    });
-    var btn2 = new Vue({
-        el: '#tableButton2',
-        data: {bgcolor:deactiveBgColor, fontColor: 'white', isActive: false},
-        methods: {
-            checkActivate: function() {
-                if(this.isActive === false) {
-                    this.bgcolor = actvieBgColor;
-                    this.isActive = true;
-                    btn1.bgcolor = deactiveBgColor;
-                    btn1.isActive = false;
-                }
-            }
-        }
-    });
+    var dbDataBoard = <?php echo $boardResult; ?>;
+    var dbDataNotice = <?php echo $noticeResult; ?>;
+
     var app = new Vue({
         el: '#tableBoard',
         data: {
-            boardData: <?=$boardResult?>
+            boardData: dbDataBoard,
+            searchName: ''
+        }
+    });
+
+    var actvieBgColor = '#666666';
+    var deactiveBgColor = '#dddddd';
+    var btnBoard = new Vue({
+        el: '#tableButton1',
+        data: {
+            bgcolor:actvieBgColor,
+            fontColor: 'white',
+            isActive: true
+        },
+        methods: {
+            checkActivate: function() {
+                if(this.isActive === false) {
+                    this.bgcolor = actvieBgColor;
+                    this.isActive = true;
+                    btnNotice.bgcolor = deactiveBgColor;
+                    btnNotice.isActive = false;
+                    app.boardData = dbDataBoard;
+                }
+            }
+        }
+    });
+    var btnNotice = new Vue({
+        el: '#tableButton2',
+        data: {
+            bgcolor:deactiveBgColor,
+            fontColor: 'white',
+            isActive: false
+        },
+        methods: {
+            checkActivate: function() {
+                if(this.isActive === false) {
+                    this.bgcolor = actvieBgColor;
+                    this.isActive = true;
+                    btnBoard.bgcolor = deactiveBgColor;
+                    btnBoard.isActive = false;
+                    app.boardData = dbDataNotice;
+                }
+            }
         }
     });
 });
