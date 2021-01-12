@@ -110,5 +110,33 @@
         </script>
     </ul>
 </h10>
+<h11>create</h11>
+<script>
+    var coworkers = {
+        "programmer":"egoing",
+        "designer":"leezche"
+    };
+    document.write("programmer: "+coworkers.programmer+"<br>");
+    document.write("designer: "+coworkers.designer+"<br>");
+    coworkers.bookkeeper = "duru";
+    document.write("designer: "+coworkers.bookkeeper+"<br>");
+    coworkers["data scientist"] = "taeho";
+    document.write("designer: "+coworkers["data scientist"]+"<br>");
+</script>
+<h11>Iterate</h11>
+<script>
+    for(var key in coworkers){
+        document.write(key+':'+coworkers[key]+'<br>');
+    }
+</script>
+<h11>Property&Method</h11>
+<script>
+    coworkers.showALL = function(){
+        for(var key in this){
+        document.write(key+':'+this[key]+'<br>'); 
+        }
+    }
+    coworkers.showALL();
+</script>
     </body>
 </html>
