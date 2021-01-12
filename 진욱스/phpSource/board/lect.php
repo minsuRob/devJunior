@@ -49,6 +49,18 @@
     padding-top: 7px;
     padding-bottom: 7px;
 }
+.clViewHeader {
+    width: 10%;
+    float: left;
+    padding-left: 12px;
+    margin-top: 5px;
+}
+.clViewContent {
+    width: 80%;
+    float: left;
+    padding-left: 7px;
+    margin-top: 5px;
+}
 </style>
 
 <body>
@@ -75,11 +87,33 @@
                 <tr v-for="(eachData, index) in boardData" class="clBoardBody" v-if="eachData.title.includes(searchName)">
                     <td align="center">{{index+1}}</td>
                     <td align="center">{{eachData.name}}</td>
-                    <td>{{eachData.title}}</td>
+                    <td v-on:click="clickTitle(eachData)">{{eachData.title}}</td>
                     <td align="center">{{eachData.adddate}}</td>
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <div id="boardView" style="display:none; width:900px; background-color:white; padding-top:10px; padding-bottom:30px">
+        <div style="font-size:20px; font-weight:bold; padding-left:10px; margin-bottom:10px">
+            글보기
+        </div>
+        <div style="clear:both">
+            <div class="clViewHeader">이름</div>
+            <div class="clViewContent">{{boardViewName}}</div>
+        </div>
+        <div style="clear:both">
+            <div class="clViewHeader">제목</div>
+            <div class="clViewContent">{{boardViewTitle}}</div>
+        </div>
+        <div style="clear:both">
+            <div class="clViewHeader">내용</div>
+            <div class="clViewContent">{{boardViewContents}}</div>
+        </div>
+        <div style="clear:both">
+            <div class="clViewHeader">날짜</div>
+            <div class="clViewContent">{{boardViewDate}}</div>
+        </div>
     </div>
 </body>
 <script>
@@ -92,6 +126,15 @@ $(document).ready(function() {
         data: {
             boardData: dbDataBoard,
             searchName: ''
+        },
+        methods: {
+            clickTitle: function(boardViewData) {
+                boardView.boardViewName = boardViewData.name;
+                boardView.boardViewTitle = boardViewData.title;
+                boardView.boardViewContents = boardViewData.contents;
+                boardView.boardViewDate = boardViewData.adddate;
+                $("#boardView").bPopup();
+            }
         }
     });
 
@@ -135,6 +178,16 @@ $(document).ready(function() {
             }
         }
     });
+
+    var boardView = new Vue({
+        el: '#boardView',
+        data: {
+            boardViewName: '',
+            boardViewTitle: '',
+            boardViewContents: '',
+            boardViewDate: ''
+        }
+    })
 });
 </script>
 
