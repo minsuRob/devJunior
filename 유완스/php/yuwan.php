@@ -10,6 +10,10 @@
         $result = mysqli_query($db_link, $SQL);
         $boardResult = dbresultTojson($result);
 
+        $SQL = " select code, title, contents, name, adddate from notice order by adddate desc ";
+        $result = mysqli_query($db_link, $SQL);
+        $noticeResult = dbresultTojson($result);
+
         function dbresultTojson($res)
         {
             $ret_arr = array();
@@ -57,7 +61,11 @@
     v-on:click="checkActivate">공지사항 보기</button>
     </div>
 
-    <table style="width: 80%;margin-top: 50px" align="center" id="tableBoard">
+    <div id="tableBoard" style="width: 80%;margin-top: 0px auto; padding-top:20px">
+    <div style="margin-bottom;5px">
+       <input type=text v-model="searchName" style="width:90%; height:25px"> <!-- 검색 바 -->
+       </div>
+    <table style="width:100%" align="center">
         <thead>
             <tr class="clBoardHeader">
                 <th style="width: 70px;">No.</th>
@@ -67,7 +75,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(eachData, index) in boardData" class="clBoardBody">
+            <tr v-for="(eachData, index) in boardData" class="clBoardBody" v-if="eachData.title.includes(searchName)">
                 <td align="center">{{index+1}}</td>
                 <td align="center">{{eachData.name}}</td>
                 <td>{{eachData.title}}</td>
@@ -75,13 +83,19 @@
             </tr>
         </tbody>
     </table>
+    </div>
 </body>
 <script>
 $(document).ready(function() {
+    
+    var dbdataBoard = <?=$boardResult?>; //자유게시판 데이터
+    var dbdataNotice = <?=$noticeResult?>; //공지사항 데이터
+
     var app4 = new Vue({
         el: '#tableBoard',
         data: {
-            boardData: <?=$boardResult?>
+            boardData: dbdataBoard
+            searchName: '검색바입니다'
         }
     });
 });
@@ -89,7 +103,7 @@ $(document).ready(function() {
 var activeBgColor = '#666666';
 var deactiveBgColor = '#dddddd';
 
-var board1button = new Vue({
+var board1button = new Vue({   //자유게시판 보기 버튼
     el: '#tableButton1',
     data: {bgcolor:activeBgColor, fontcolor: 'white', isActive: true},
     methods: {
@@ -100,13 +114,14 @@ var board1button = new Vue({
                 this.isActive = true;
                 board2button.bgcolor = deactiveBgColor;
                 board2button.isActive = false;
+                app.boardData = dbdataBoard 
             }
         }
     }
 });
 
 
-var board2button = new Vue({
+var board2button = new Vue({  //공지사항 보기
     el: '#tableButton2',
     data: {bgcolor:deactiveBgColor, fontcolor: 'white', isActive: false},
     methods: {
@@ -117,6 +132,7 @@ var board2button = new Vue({
                 this.isActive = true;
                 board1button.bgcolor = deactiveBgColor;
                 board1button.isActive = false;
+                app.boardData = dbdataNotice;
             }
         }
     }
