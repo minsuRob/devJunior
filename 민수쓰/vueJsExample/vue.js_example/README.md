@@ -70,3 +70,13 @@ Vue.js 책과 관련한 예제들
 # Chapter 3 
 
 # Chapter 4 
+
+	• 컴포넌트
+		○ 결론적으로는 div나 html element들을 부분부분 짤라서 가져오는 역할로 보인다.
+	• 4-3. 컴포넌트들간의 데이터 전달
+		○ props - 부모 -> 자식 
+		○ $emit, $on - 자식 -> 부모
+		○ 관계없을 경우 event Bus
+	• Prop
+		○ function에 파라미터 넘기듯이 data mapping을 한다.
+        ○ 부모자식 관계는 vue에서 무조건 class extends하는 느낌하고는 좀 다른거같으니 확인이 필요해보인다.
