@@ -80,3 +80,19 @@ Vue.js 책과 관련한 예제들
 	• Prop
 		○ function에 파라미터 넘기듯이 data mapping을 한다.
         ○ 부모자식 관계는 vue에서 무조건 class extends하는 느낌하고는 좀 다른거같으니 확인이 필요해보인다.
+			• 이벤트 버스
+		○ 발행자 구독자 서비스같은 패턴
+		○ 컴포넌트가 event 발행시 다른 이벤트가 구독한다.
+	• Slot
+		○ slot을 이용해 컴포넌트를 재사용
+		○ 복잡한 코드가 포함된 데이터를 전달은 힘들기에 slot으로 처리
+		○ Vuetify는 slot이 dialog, data table, menu같은 ui에서 사용.
+		
+	• 종류
+		○ unNamed
+			§ default이며 부모에서 자녀에 inject 처리
+			§ 부모의 dom을 자녀의 <slot> 태그 위치에 대체 가능.
+			
+		○ Named
+		○ scoped
+		○ (2.6ver) v-slot
