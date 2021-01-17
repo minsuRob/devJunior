@@ -83,8 +83,11 @@ Vue.js 책과 관련한 예제들
 			• 이벤트 버스
 		○ 발행자 구독자 서비스같은 패턴
 		○ 컴포넌트가 event 발행시 다른 이벤트가 구독한다.
+	• 이벤트 버스
+		○ 발행자 구독자 서비스같은 패턴
+		○ 컴포넌트가 event 발행시 다른 이벤트가 구독한다.
 	• Slot
-		○ slot을 이용해 컴포넌트를 재사용
+		○ slot을 이용해 컴포넌트(dom tag들을)를 재사용
 		○ 복잡한 코드가 포함된 데이터를 전달은 힘들기에 slot으로 처리
 		○ Vuetify는 slot이 dialog, data table, menu같은 ui에서 사용.
 		
@@ -94,5 +97,36 @@ Vue.js 책과 관련한 예제들
 			§ 부모의 dom을 자녀의 <slot> 태그 위치에 대체 가능.
 			
 		○ Named
+			§ name attr를 참고해서 다양한 유형의 콘텐츠를 삽입할때 사용.
 		○ scoped
 		○ (2.6ver) v-slot
+			§ 이미 렌더링된 html tag를 전달한것과 달리, 템플릿(컴포넌트?)을 재사용하는 slot.
+			§ 어찌됐든 데이터를 emit사용하지않고 자식-> 부모로 이동가능..
+v-slot은 통일방법.
+
+
+# Chapter 5	
+	• 반응형웹에는 viewport나 media query가 사용됐다.
+	• Materialize
+		○ HTML, CSS, JS로 작성된 UI Lib
+		○ 짧은시간에 세련, 일관, 기능적 Web, Web App 작성 가능.
+		○ 반응형 App 작성 가능.
+
+	• Materialize 태그 종류
+		○ color 
+		○ algin
+		○ img, icon, video\
+		○ hide & show
+		○ grid
+		○ 반응형 relative layout
+			§ 210117-22:30
+		○ offset
+		○ 순서바꾸기(push)
+		○ button
+		○ card
+		○ navbar
+		○ slider
+		○ autocomplete
+		○ scrollspy
+
+	• Vuetify		
