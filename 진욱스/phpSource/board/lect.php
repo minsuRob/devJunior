@@ -45,6 +45,11 @@
             $name = $boardData[$i] -> name;
             $changed = $boardData[$i] -> changed;
 
+            if(!$code) {
+                $SQL = " insert into ".addSlashes($tableName)."(title, name, adddate) values('".addSlashes($title)."', '".addSlashes($name)."', now()) ";
+                mysqli_query($db_link, $SQL);
+            }
+
             if($changed == "Y") {
                 $SQL = " update ".addSlashes($tableName)." set title = '".addSlashes($title)."', name = '".addSlashes($name)."' where code = '".addSlashes($code)."'";
                 mysqli_query($db_link, $SQL);
@@ -99,6 +104,7 @@
     <div id="tableBoard" style="width: 80%; margin:0px auto; padding:20px">
         <div style="margin-bottom: 5px">
             <input type="text" v-model="searchName" style="width: 90%; height: 25px">
+            <button v-on:click="insertNewPosting()">새글추가</button>
         </div>
 
         <table style="width: 100%" align="center">
@@ -176,6 +182,9 @@ $(document).ready(function() {
             },
             changedData: function(boardViewData) {
                 boardViewData.changed = "Y";
+            },
+            insertNewPosting: function() {
+                this.boardData.push({"code":"", "title":"", "contents":"", "name":"", "adddate":"", "changed":"N"});
             }
         }
     });
