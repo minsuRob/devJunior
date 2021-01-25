@@ -30,12 +30,22 @@
 
     if( $_POST["mode"] == "allSave" ) {
         $boardData = json_decode($_POST["boardData"]);
+        $deleteLists = json_decode($_POST["deleteLists"]);
         $tableName = "";
         
         if($_POST["boardName"] == "free") {
             $tableName = "board";
         } else if($_POST["boardName"] == "notice") {
             $tableName = "notice"; 
+        }
+
+        for($i=0; $i < count($deleteLists); $i++) {
+            $code = $deleteLists[$i] -> code;
+
+            if($code) {
+                $SQL = "delete from ".$tableName." where code='".$code."'";
+                mysqli_query($db_link, $SQL);
+            }
         }
 
         for($i=0; $i < count($boardData); $i++) {
@@ -114,7 +124,7 @@
                     <th style="width: 120px;">이름</th>
                     <th>제목</th>
                     <th style="width: 170px;">날짜</th>
-                    <th style="width: 80px;">액션</th>
+                    <th style="width: 160px;">액션</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,7 +133,10 @@
                     <td style="width: 120px;" align="center"><input type="text" v-model="eachData.name" v-on:change="changedData(eachData)" style="width:90%"></td>
                     <td><input type="text" v-model="eachData.title" v-on:change="changedData(eachData)" style="width:90%"></td>
                     <td style="width: 170px;" align="center">{{eachData.adddate}}</td>
-                    <td style="width: 80px;" align="center"><button v-on:click="clickTitle(eachData)">내용보기</button></td>
+                    <td style="width: 160px;" align="center">
+                        <button v-on:click="clickTitle(eachData)">내용보기</button>
+                        <button v-on:click="deletePosting(eachData, index)">삭제하기</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -166,10 +179,14 @@ $(document).ready(function() {
     var dbDataBoard = <?php echo $boardResult; ?>;
     var dbDataNotice = <?php echo $noticeResult; ?>;
 
+    var deleteDataBoard = [];
+    var deleteDataNotice = [];
+
     app = new Vue({
         el: '#tableBoard',
         data: {
             boardData: dbDataBoard,
+            deleteLists: deleteDataBoard,
             searchName: ''
         },
         methods: {
@@ -185,6 +202,10 @@ $(document).ready(function() {
             },
             insertNewPosting: function() {
                 this.boardData.push({"code":"", "title":"", "contents":"", "name":"", "adddate":"", "changed":"N"});
+            },
+            deletePosting: function(boardViewData, idx) {
+                this.boardData.splice(idx, 1);
+                this.deleteLists.push({"code": boardViewData.code});
             }
         }
     });
@@ -206,6 +227,7 @@ $(document).ready(function() {
                     btnNotice.bgcolor = deactiveBgColor;
                     btnNotice.isActive = false;
                     app.boardData = dbDataBoard;
+                    app.deleteLists = deleteDataBoard;
                 }
             }
         }
@@ -225,6 +247,7 @@ $(document).ready(function() {
                     btnBoard.bgcolor = deactiveBgColor;
                     btnBoard.isActive = false;
                     app.boardData = dbDataNotice;
+                    app.deleteLists = deleteDataNotice;
                 }
             }
         }
@@ -257,7 +280,8 @@ function allSave() {
         data: {
             'mode': 'allSave',
             'boardName': boardName,
-            'boardData': JSON.stringify(sendingData)
+            'boardData': JSON.stringify(sendingData),
+            'deleteLists': JSON.stringify(app.deleteLists)
         },
         dataType: 'text',
         cache: false,
@@ -268,8 +292,6 @@ function allSave() {
             alert("정상 저장되었습니다.");
             location.href = "lect.php";
         }
-
-        alert("성공: " + result);
     })
     .fail(function(request, status, error) {
         alert("에러 발생: " + error);
