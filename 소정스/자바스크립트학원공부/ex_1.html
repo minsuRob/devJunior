@@ -2,7 +2,7 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
-        <title>산술 연산자</title>
+        <title>비교 연산자</title>
         <script>
             var a ,b
             a = 10;
@@ -10,17 +10,38 @@
             document.write("<h2>");
             document.write("a = 10, b=20");
             document.write("<hr>");
-            document.write("a + b =" +(a+b));
+            document.write("a > b =" +(a>b));
             document.write("<hr>")
-            document.write("a - b =" + (a-b));
+            document.write("a < b =" + (a<b));
             document.write("<hr>")
-            document.write("a * b =" + (a*b));
+            document.write("a == b =" + (a==b));
             document.write("<hr>")
-            document.write("a / b =" + (a/b));
+            document.write("a >= b =" + (a>=b));
             document.write("<hr>")
-            document.write("a % b =" + (a%b));
+            document.write("a <= b =" + (a<=b));
+            document.write("<hr>")
+            document.write("a != b =" + (a!=b));
+            document.write("<hr />")
+            document.write("대한민국 > 대한민곡 =" + ("대한민국">"대한민곡"));
             document.write(d,"</h2>");
         </script>
-        <title>소정이의 연습시간</title>
+        <script>
+            var a ,b
+            a = 10;
+            b = 20;
+            document.write("<h2>");
+            document.write("a = 10, b=20");
+            document.write("<hr>");
+            document.write("a += b =" +(a+=b));
+            document.write("<hr>")
+            document.write("a -= b =" + (a-=b));
+            document.write("<hr>")
+            document.write("a *= b =" + (a*=b));
+            document.write("<hr>")
+            document.write("a /= b =" + (a/=b));
+            document.write("<hr>")
+            document.write("a %= b =" + (a%=b));
+            document.write(d,"</h2>");   
+        </script>
     </head>
 </html>
