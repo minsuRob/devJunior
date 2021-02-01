@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>팩토리얼 계산</title>
+  </head>
+  <body>
+    <script>
+        function fact(n) {
+          if (n <= 1) return n;
+          return n * fact(n - 1);
+        }
+
+        for (let i = 1; i < 10; i++) {
+          document.write(i + "! =" + fact(i) + "<br/>");
+        }
+
+        document.write("hello, world");
+
+        let n = 2;
+        if (n > 0); //이렇게도 주석
+        document.write(n + " " + "is positive" + "<br />"); /* 이렇게도 주석 */
+
+        let sum = 1,
+          sum2 = 2,
+          sum3 = 3;
+
+       function (a,b){
+        sum=a;
+        sum2=b;
+        return a;
+        return b;
+      }
+
+        document.write(sum);
+
+        if ((sum = 10));
+        {
+          document.write("hi hello");
+        }
+    </script>
+  </body>
+</html>
