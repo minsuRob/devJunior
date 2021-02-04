@@ -103,6 +103,60 @@
             </div>
 </body>
 
+<!-- vue 플러그인 임포트   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            arr: [1, 2, 3, 4, 5],
+        },
+        //template: ``,
+        methods: {
+            change1: function (event) {
+                //this.$data.arr[0] = 100;
+                console.log("event.target1 : " + this.$data.arr[0]);
+                Vue.set(this.$data.arr, 0, 200);
+            },
+            change2: function (event) {
+                this.$set(this.$data.arr, 1, 100);
+                console.log("event.target2");
+            },
+            change3: function (event) {
+                this.$data.arr.splice(0,2);
+                console.log("event.target3 : " + this.$data.arr );
+            },
+            change4: function (event) {
+                console.log("event.target4");
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function () {
+            console.log("mounted");
+        },
+        updated: function () {
+            console.log("updated");
+        },
+    });
+
+</script>
+
 </html>
 
 <!-- vue 플러그인 임포트   -->
