@@ -43,16 +43,13 @@
     <h2>v-bind 연습</h2>
     <div id="app1">
         <p v-bind:id="idA">
-            <button v-on:click="clickBindId">클릭</button>
-            아이디 바인딩
+            <button v-on:click="clickBindId">클릭</button> 아이디 바인딩
         </p>
         <p v-bind:class="classA">
-            <button v-on:click="clickBindClass">클릭</button>
-            클래스 바인딩
+            <button v-on:click="clickBindClass">클릭</button> 클래스 바인딩
         </p>
         <p v-bind:style="styleA">
-            <button v-on:click="clickBindStyle">클릭</button>
-            스타일 바인딩
+            <button v-on:click="clickBindStyle">클릭</button> 스타일 바인딩
         </p>
         <p>
             <button v-on:click="clickBindValue">클릭</button>
@@ -80,3 +77,55 @@
 </body>
 
 </html>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
+
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app1",
+        data: {
+            idA: "",
+            classA: "",
+            styleA: "",
+            message: "",
+            imagePath: "",
+        },
+        methods: {
+            clickBindId: function() {
+                // this.$data.idA = "abc"
+                this.$set(this.$data, "idA", "abc");
+            },
+            clickBindClass: function() {
+                this.$set(this.$data, "classA", "container");
+            },
+            clickBindStyle: function() {
+                this.$set(this.$data, "styleA", "color:blue; font-size:20pt;");
+            },
+            clickBindValue: function() {
+                this.$set(this.$data, "message", "zz");
+            },
+            clickBindSrc: function() {
+                this.$set(this.$data, "imagePath", "../images/apple.gif");
+            },
+
+        },
+    });
+    new Vue({
+        /* edtmc^2w */
+        el: "#app2",
+        data: {
+            message: "",
+            imagePath: "",
+        },
+        methods: {
+            clickBindSrc: function() {
+                this.$set(this.$data, "imagePath", "../images/apple.gif");
+                this.$set(this.$data, "message", "ㅎㅎ");
+            },
+
+        },
+    });
+</script>
