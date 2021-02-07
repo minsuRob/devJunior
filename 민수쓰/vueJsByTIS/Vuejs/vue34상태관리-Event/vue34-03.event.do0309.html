@@ -51,4 +51,59 @@
         <child-component v-on:show-log="printText"></child-component>
     </div>
 </body>
+
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* JSX를 자바스크립트로 변환 */
+</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
+<script>
+    var childComponent = {
+        /* pdtmc^2w */
+        props: [],
+        data: function() {
+            //return {            },
+        },
+        template: `
+        <div>
+            <button v-on:click="showLog">printText</button>
+        </div>
+        `,
+        methods: {
+            showLog: function() {
+                // 사용자 정의 이벤트 발생
+                // 부모에게 데이터 넘기기
+                // this.$emit("사용자 이벤트명", "넘길값1", 넘길값2, ...);
+                this.$emit("show-log", "abcdef", 417);
+            }
+        },
+    };
+
+
+
+
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            mesg: "data"
+        },
+        //template: ``,
+        methods: {
+            printText: function(msg1, msg2) {
+                this.$set(this.$data, "mesg", msg1 + ", " + msg2);
+                console.log("msg1 : " + msg1);
+                console.log("msg2 : " + msg2);
+            }
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+            "child-component": childComponent,
+        },
+    });
+</script>
