@@ -213,7 +213,7 @@
         2. add 후에 input 태그의 입력 값 지우기. 
         3. 토글 할 때 findIndex 로 못 찾는 경우에 대한 방어 코드 추가.
         4. input 태그에 빈 문자일이 입력 되는 경우는 배열에 추가되지 않게. 
-        5. todo 타이틀 바꾸기. 기능 누락. 추가 필요
+        5. todo 타이틀 바꾸기. 기능 누락. 기능 추가 필요
 
     주의 사항.
         1. checked 메서드에서 class에 빈 문자열로 설정하면 안됨. 
@@ -234,10 +234,7 @@
 
         <!-- TodoInput -->
         <div class="inputBox shadow">
-            <input type="text"
-                placeholder="Type what you have to do"
-                v-model.trim:value="newTodoItem"
-                v-on:keyup.enter="addTodo" />
+            <input type="text" placeholder="Type what you have to do" v-model.trim:value="newTodoItem" v-on:keyup.enter="addTodo" />
             <span class="addContainer" v-on:click="addTodo">
                 <i class="addBtn fas fa-plus" aria-hidden="true"></i>
             </span>
@@ -263,15 +260,10 @@
         <!-- TodoList -->
         <section>
             <transition-group name="list" tag="ul">
-                <li v-for="(todoItem, index) in todoItems"
-                    v-bind:key="todoItem.id"
-                    v-bind:class="checked(todoItem.done)"
-                    v-on:click="doneToggle(todoItem.id, index)">
-                    <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-                    {{ todoItem.todo }}
-                    <span class="removeBtn"
-                          type="button"
-                          v-on:click.stop="removeTodo(todoItem.id, index)">
+                <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.id" v-bind:class="checked(todoItem.done)" v-on:click="doneToggle(todoItem.id, index)">
+                    <i class="checkBtn fas fa-check" aria-hidden="true"></i> {{ todoItem.todo }}
+                    <span class="removeBtn" type="button" v-on:click.stop="removeTodo(todoItem.id, index)">
+                        <!--.stop is  bubbling 체크 -->
                         <i class="far fa-trash-alt" aria-hidden="true"></i>
                     </span>
                 </li>
@@ -288,3 +280,104 @@
 </body>
 
 </html>
+
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            showModal: "",
+            newTodoItem: "",
+            todoItems: [{
+                id: 1,
+                todo: "다운로드",
+                done: false,
+            }, {
+                id: 2,
+                todo: "크크",
+                done: false,
+            }, {
+                id: 3,
+                todo: "잠실",
+                done: false,
+            }],
+        },
+        //template: ``,
+        methods: {
+            checked: function(done) {
+                /*if (done) {
+                    return "checked";
+                } else {
+                    return "";
+                }*/
+
+                return done ? "checked" : null;
+            },
+            doneToggle: function(id, idx) {
+                this.$set(this.$data.todoItems[idx], "done", !this.$data.todoItems[idx].done);
+                //this.$data.todoItems[idx].done = !this.$data.todoItems[idx].done;
+            },
+            removeTodo: function(id, index) {
+                // 배열에서 삭제. splice(idx, 1)
+                this.$data.todoItems.splice(index, 1);
+                //기존? 이벤트 취소하여 click bubbling 막기 
+                //event.stopPropagation();
+                //event.preventDefault();
+
+            },
+            addTodo: function() {
+                var maxId = this.$data.todoItems.length;
+
+                var maxObj = "";
+                if (maxId > 0) {
+                    maxObj = this.$data.todoItems.reduce((prevItem, nextItem) => {
+                        //max id 값의 item을 찾는다
+                        return prevItem.id > nextItem.id ? prevItem : nextItem;
+                    })
+                } else {
+                    maxObj = {
+                        id: 0,
+                        todo: "",
+                        done: false,
+                    }
+                }
+
+
+                // max length 찾는법, map , reduce
+                //todoItems.push(newTodoItem)
+                var newTodo = {
+                    id: maxObj.id + 1,
+                    todo: this.$data.newTodoItem,
+                    done: false,
+                };
+                this.$set(this.$data.todoItems, maxId, newTodo);
+
+                this.$set(this.$data, "newTodoItem", "");
+                //this.$data.todoItems[length] = newTodo;
+            },
+            clearAll: function() {
+                this.$set(this.$data, "todoItems", []);
+
+            },
+
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {},
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+</script>
