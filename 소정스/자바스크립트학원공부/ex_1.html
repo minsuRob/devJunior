@@ -2,21 +2,15 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
-        <title>조건 연산자</title>
+        <title>함수</title>
         <script type="text/javascript">
-            var a ,b, rs1, rs2
-            a = "월요일";
-
-            rs1 = "오늘은 월요일 입니다.";
-            rs2 = "오늘은 월요일이 아닙니다.";
-
-            b = (a=="월요일")? rs1:rs2;
-            document.write("<h2>"+b+"</h2>");
-
-            a = "일요일";
-
-            b =(a=="월요일")? rs1 : rs2;
-            document.write("<h2>"+b+"</h2>");
+        function testFunc(stu_name,stu_score){
+            alert("이름 :"+ stu_name+"￦n점수:"+ stu_score);
+        };
         </script>
     </head>
+    <body>
+        <button type="button" onclick="testFunc('홍길동','100')">홍길동</button>
+        <button type="button" onclick="testFunc('김철수','95')">김철수</button>
+    </body>
 </html>
