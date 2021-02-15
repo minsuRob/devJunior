@@ -4,13 +4,32 @@
         <meta charset="UTF-8">
         <title>함수</title>
         <script type="text/javascript">
-        function testFunc(stu_name,stu_score){
-            alert("이름 :"+ stu_name+"￦n점수:"+ stu_score);
-        };
+        /* getElementByld("선택할 요소의 id값");*/
+        // var txt = document.getElementByld("txt_id");
+        /* get Element*/
+        //var txt = document.gerElementsByName("txt_nm");
+        //var txt = document.gerElementsByClassNames("txt_cls");
+        //var txt = document.gerElementsByTagNames("input");
+        //var ns = "http://abc.com/test"
+        //var txt = document.getElementsByTagNameNS(ns,"imput");
+        /* querySelectoe() */
+        // var txt = document.querySelector("input")
+        // var txt = document.quertSelector("#txt_id");
+        function redColor(){
+        var txt = document.getElementById("changeText");
+        txt.style.color ="red";};
+        function blueColor(){
+        var txt = document.getElementById("changeText");
+        txt.style.color ="blue";};
+        function greenColor(){
+        var txt = document.getElementById("changeText");
+        txt.style.color ="green";};
         </script>
     </head>
     <body>
-        <button type="button" onclick="testFunc('홍길동','100')">홍길동</button>
-        <button type="button" onclick="testFunc('김철수','95')">김철수</button>
+            <p id="changeText">*클릭한 버튼에 따라 다른 스타일이 적용됩니다.</p>
+        <p><button type = "button" onclick="redColor()">빨강</button></p>
+        <p><button type = "button" onclick="blueColor()">파랑</button></p>
+        <p><button type = "button" onclick="blueColor()">초록</button></p>
     </body>
 </html>
