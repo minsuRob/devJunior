@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>DOM함수</title>
+        <script type="text/javascript">
+        window.onload = function(){
+            //var pBtn = document.getElementById("pBtn");
+            //var sBtn = document.getElementById("sBtn");
+            //var bBtn = document.getElementById("gBtn");
+            // obj.eventHandler = function(){};
+        pBtn.onclick = function(){
+        var txt = document.getElementById("changeText");
+        txt.style.color ="pink";};
+        sBtn.onclick = function(){
+        var txt = document.getElementById("changeText");
+        txt.style.color ="skyblue";};
+        bBtn.onclick = function(){
+        var txt = document.getElementById("changeText");
+        txt.style.color ="black";};
+        };
+               </script>
+
+    </head>
+    <body>
+        <p id="changeText">*클릭한 버튼에 따라 다른 스타일이 적용됩니다.</p>
+        <p><button type = "button" id ="pBtn">핑크핑크</button></p>
+        <p><button type = "button" id ="sBtn">블루블루</button></p>
+        <p><button type = "button" id ="bBtn">원래대로</button></p>
+
+    </body>
+</html>

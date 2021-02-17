@@ -1,0 +1,51 @@
+<!DOCTYPE html>>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>속성접근</title>
+    <style type="text/css">
+    .thumb_img img{width:300px;height: 250px;margin-right:5px;cursor:pointer}
+    </style>
+ </head>
+    <script type="text/javascript">
+    function changeImage(img_path){
+        var big_img = document.getElementById("big_img")
+        big_img.src = img_path;
+    };
+    //속성값 알아내기
+    //HTML-DOM
+    //obj.prop
+    //alert(big_img.alt);
+    //alert(big_img.abc);
+
+    //DOM Core
+    //obj.getAttribute("prop");
+    //alert(big_img.getAttribute("alt"));
+    //alert(big_img.getAttribute("abc"));
+
+    //속성값 바꾸기 or 속성과 값 추가하기
+    //HTML-DOM
+    //obj.prop = "value";
+    //big_img.alt = "큰 이미지로 보기";
+    //big_img.title = "큰 이미지로 보기";
+    //big_img.test = "1234";
+
+    //DOM Core
+    //obj.setAttribute("prop","value");
+    //big_img.setAttribute("alt","큰 이미지로 보기");
+    //big_img.setAttribute("title","큰 이미지로 보기");
+    //big_img.setAttribute("test","1234");
+    
+    </script>
+<body>
+    <p>
+        <img data src="1.jpg" id="big_img" alt="원본이미지" abc = "TEST">
+    </p>
+    <P class="thumb_img">
+        <img src="1.jpg" onclick="changeImage(this.src)">
+        <img src="2.jpg" onclick="changeImage(this.src)">
+        <img src="3.jpg" onclick="changeImage(this.src)">
+        <img src="4.jpg" onclick="changeImage(this.src)">
+    </P>
+</body>
+</html>
