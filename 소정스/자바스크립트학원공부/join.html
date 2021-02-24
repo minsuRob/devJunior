@@ -6,52 +6,102 @@
     <style type="text/css">
         body,input,select,option,button{font-size:20px}
         input[type=checkbox]{width:20px;height:20px}
+        span{font-size:16px;color:#f00}
     </style>
     <script type="text/javascript">
         function form_check(frm){
+            // document.querySelector("#uname")
+            
+            // 객체 생성
             var uname = document.getElementById("uname");
             var uid = document.getElementById("uid");
             var pwd = document.getElementById("pwd");
             var repwd = document.getElementById("repwd");
-            if(uname.value == ""){
-                alert("이름을 입력하세요.");
-                uname.focus()
-                return false;     
+            var agree = document.getElementById("mobile");
+            
+            if(uname.value == ""){ // if(!uname.value) // 값이 없다면
+            // if(uname.value != ""){ // if(uname.value) // 있다면
+                // alert("이름을 입력하세요.");
+                var uname_txt = document.querySelector(".uname_txt");
+                // uname_txt.innerHTML = "<b>이름을 입력하세요.</b>";
+                uname_txt.textContent = "이름을 입력하세요.";
+                uname.focus();
+                return false;
+            };
+            
+            if(!uid.value){
+                alert("아이디를 입력하세요.");
+                uid.focus();
+                return false;
             };
             if(uid.value.length < 4 || uid.value.length > 12){
                 alert("4~12글자만 입력할 수 있습니다.");
                 uid.focus();
                 return false;
             };
-            if(!uid.value == ""){
-                alert("아이디를 입력하세요.");
-                uid.focus()
-                return false; };
-
-
-            if(!pwd.value == ""){
-            alert("비밀번호를 입력하세요.");
-            pwd.focus()
-            return false; };   
-            if(pwd.value != repwd.value == ""){
-            alert("비밀번호가 일치하지 않습니다.");
-            repwd.focus()
-            return false; };              
             
-
+            if(!pwd.value){
+                alert("비밀번호를 입력하세요.");
+                pwd.focus();
+                return false;
+            };
+            var pwd_cnt = pwd.value.length;
+            if(pwd_cnt < 4 || pwd_cnt > 8){
+                alert("비밀번호는 4~8 글자만 입력할 수 있습니다.");
+                pwd.focus();
+                return false;
+            }
+            
+            if(pwd.value != repwd.value){
+                alert("비밀번호를 확인해 주세요.");
+                repwd.focus();
+                return false;
+            };
+            
+            var reg = /^[0-9]+$/g;
+            if(!reg.test(mobile.value)){
+                alert("전화번호는 숫자만 입력할 수 있습니다.");
+                mobile.focus();
+                return false;
+            };
+            
+            // document.form1.submit();
             frm.submit();
         };
         
-
+        function change_email(){
+            // alert("TEST");
+            var email_dns = document.getElementById("email_dns");
+            var email_sel = document.getElementById("email_sel");
+            
+            var idx = email_sel.options.selectedIndex;
+            // alert(idx);
+            // var sel_value = email_sel.options[1].text;
+            var sel_value = email_sel.options[idx].value;
+            // alert(sel_value);
+            
+            email_dns.value = sel_value;
+        };
+        
+        function search_address(){
+            window.open("search_zip.html", "", "width=600,height=300,left=0,top=0");
+        };
+        if(!agree.checked){
+                alert("약관동의가 필요합니다.");
+                mobile.focus();
+                return false;
+            };
     </script>
 </head>
 <body>
-    <form name="form1" action="insert.php" method="post">
+    <form name="form1" action="insert.php" method="get">
         <fieldset>
         <legend>회원가입</legend>
         <p>
             <label for="uname">이름</label>
             <input type="text" name="uname" id="uname">
+            <br>
+            <span class="uname_txt"></span>
         </p>
         <p>
             아이디
@@ -63,6 +113,8 @@
         <p>
             비밀번호
             <input type="text" name="pwd" id="pwd">
+            <br>
+            비밀번호는 4~8 글자만 입력할 수 있습니다.
         </p>
         <p>
             비밀번호 확인
@@ -77,7 +129,7 @@
             이메일
             <input type="text" name="email_id" id="email_id"> @ 
             <input type="text" name="email_dns" id="email_dns"> 
-            <select name="email_sel" id="email_sel">
+            <select name="email_sel" id="email_sel" onchange="change_email()">
                 <option value="">직접 입력</option>
                 <option value="naver.com">네이버</option>
                 <option value="daum.net">다음</option>
@@ -92,7 +144,7 @@
         <p>
             주소
             <input type="text" name="postalCode" id="postalCode">
-            <button type="button">주소검색</button>
+            <button type="button" onclick="search_address()">주소검색</button>
             <br>
             기본 주소
             <input type="text" name="addr1" id="addr1">
