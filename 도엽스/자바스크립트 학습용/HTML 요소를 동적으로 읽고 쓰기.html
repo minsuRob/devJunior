@@ -1,0 +1,43 @@
+<!--예를 들어 HTML로 [홍길동]이라는 콘텐츠를 화면에 출력하였다. 이 HTML 요소에 접근하여 [홍길동]을 [이순신] 으로 바꿔 출력하게 만들려면 이 속성을 사용해야 한다.
+   그리고 HTML 요소에 접근하려면 document.getElementByld 메서드와 함께 사용한다.-->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>스톱워치</title>
+    <script>
+      window.onload = function () {
+        let starButton = document.getElementById("start"); // start 버튼 요소
+        let stopButton = document.getElementById("stop"); // stop 버튼 요소
+        let display = document.getElementById("display"); // 결과를 표시하는 요소
+        let starTime, timer;
+        starButton.onclick = start; // start 버튼 활성화
+        function start() {
+          starButton.onclick = null; // start 버튼 비활성화
+          stopButton.onclick = stop; // stop 버튼 활성화
+          startTime = new Date();
+          // 0.01초마다 경과한 시간을 표시
+          timer = setInterval(function () {
+            let now = new Date();
+            // display에 경과한 시간 쓰기
+            display.innerHTML = ((now - startTime) / 1000).toFixed(2);
+          }, 10);
+        }
+        function stop() {
+          clearInterval(timer); // 타이머 해제
+          starButton.onclick = start; // start 버튼 활성화
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <p id="display">0.00</p>
+    <input id="start" type="button" value="start" />
+    <input id="stop" type="button" value="stop" />
+  </body>
+</html>
+
+<!-- 이 예제에서는 요소 객체 display의 innerHTML 프로퍼티에 경과 시간을 대입해서 id 속성 값이 display인 HTML 요소의 내용을 갱신한다.-->
+display.innerHTML=((now - startTime)/1000).toFixed(2);
+<!-- 이로써 id 속성 값이 display인 HTML 요소의 모든 자식 요소를 삭제하고, 우변의 표현식을 평가한 내용을 HTML 코드로 바꾸어 대입한다. -->
