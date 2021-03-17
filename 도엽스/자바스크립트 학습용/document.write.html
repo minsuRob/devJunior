@@ -1,0 +1,20 @@
+<!--초창기 자바사크립트에서는 document.write가 처리 결과를 출력하는 유일한 수단이었다. 현재는 DOM을 사용하여 HTML 요소를 생성하거나 처리 결과를 HTML 문서로 출력하는 것이 일반적이다.
+따라서 document.write를 사용하는 경우는 매우 드물다.
+document.write 메서드는 인수로 받은 문자열을 HTML 문서의 body 요소 안에 출력한다. 이렇게 되면 HTML 문서의 내용이 바뀌게 되고 웹 브라우저는 수정된 HTML 문서를 표시한다.-->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>document.write()</title>
+    <script></script>
+  </head>
+  <body>
+    <script>
+      let now = new Date();
+      let month = now.getMonth() + 1;
+      let day = now.getDate();
+      document.write("<p>오늘은" + month + "월" + day + "일 입니다.</P>");
+    </script>
+  </body>
+</html>
