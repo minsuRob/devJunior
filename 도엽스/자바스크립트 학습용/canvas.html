@@ -1,0 +1,29 @@
+<!--canvas는 즉시 실행형 저수준 API다. 선,원,사각형을 그리는 등의 기본적인 그리기 기능만 제공하므로 그리는 속도가 빠르다.
+canvas의 그리기 명령은 호출하는 즉시 실행된다. 그림 상태를 저장하는 중간 데이터 계층이 없다.-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Canvas 기본</title>
+    <script>
+        function drawRect(){
+          var myCanvas=document.getElementById("myCanvas");
+          var ctx = myCanvas.getContext("2d");
+
+          ctx.fillRect(25, 25, 100, 100);
+          ctx.clearRect(45,45,60,60);
+        }
+    </script>
+  </head>
+  <body>
+    <canvas
+      id="myCanvas"
+      width="200px"
+      height="200px"
+      style="border: 1px solid black"
+    ></canvas>
+  </br>
+  <button type = 'button' onclick = 'drawRect()'>네모 그리기</button>
+  </body>
+</html>
