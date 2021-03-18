@@ -18,3 +18,8 @@ document.write 메서드는 인수로 받은 문자열을 HTML 문서의 body �
     </script>
   </body>
 </html>
+
+<!--document.write의 출력 값은 script 요소 바로 앞의 HTML 요소가 추가됨. 그 결과 앞에서 본 것 처럼 script 요소가 있던 자리가 <p>오늘은 x월x일 입니다.</p>로 바뀐 것이다.
+웹 브라우저는 script 요소 안의 작업이 끝난 후에 </body> 다음 부분을 해석해서 추가한다.
+또한 이벤트 처리기로 등록한 함수 안에서 document.write를 사용해서는 안된다. 사용할 경우 이벤트 처리기가 실행되면 HTML 문서 전체 내용이 document.write가 출력한 값으로 바뀐다.
+따라서 동적으로 HTML 문서를 변경하려면 DOM을 사용해야 한다.-->
