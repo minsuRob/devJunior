@@ -15,11 +15,11 @@ export default {
   },
   methods: {
     onIncrease() {
-      this.number++
+      this.number = this.number + 1;
     },
     onDecrease() {
-      this.number--
-    }
-  }
+      this.number = this.number - 1;
+    },
+  },
 };
 </script>
