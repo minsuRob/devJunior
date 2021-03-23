@@ -1,20 +1,26 @@
 <template>
   <div>
-    <input type="text" v-model="newTodo">
-    <button type="button">추가</button>
-    <div>{{newTodo}}</div>
+    <input type="text" v-model="propNewTodo" @keyup="onChangeHandle">
+    <button type="button" @click="onAddHandle">추가</button>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['newTodo'],
   data() {
     return {
-      number: 0,
+      propNewTodo: this.newTodo,
     };
   },
-  props: {
-    newTodo: String,
+  methods: {
+    onChangeHandle(e) {
+      this.$emit('onChangeNewTodo', e.target.value);
+    },
+    onAddHandle() {
+      this.$emit('addTodo');
+      this.propNewTodo = '';
+    },
   },
 };
 </script>
