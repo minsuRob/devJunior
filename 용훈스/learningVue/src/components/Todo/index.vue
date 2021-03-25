@@ -14,6 +14,7 @@
       @updateToggle="updateToggle"
       @deleteTodo="deleteTodo"
       @changeHandle="changeHandle"
+      @completeTodo="completeTodo"
     ></TodoList>
   </div>
 </template>
@@ -73,6 +74,11 @@ export default {
     updateTodo(id) {
       this.todoList = this.todoList.map(v =>
         (v.id === id ? { ...v, todo: this.updateValue, updateStatus: !v.updateStatus } : v),
+      );
+    },
+    completeTodo(id) {
+      this.todoList = this.todoList.map(v =>
+        (v.id === id ? { ...v, completionStatus: !v.completionStatus } : v),
       );
     },
     changeHandle(value) {

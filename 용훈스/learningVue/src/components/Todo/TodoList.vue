@@ -9,6 +9,7 @@
       @updateToggle="updateToggle"
       @updateHandle="updateHandle"
       @changeHandle="changeHandle"
+      @completeTodo="completeTodo"
     ></TodoListItem>
   </div>
 </template>
@@ -36,6 +37,9 @@ export default {
     },
     changeHandle(value) {
       this.$emit('changeHandle', value);
+    },
+    completeTodo(id) {
+      this.$emit('completeTodo', id);
     },
   },
 };
