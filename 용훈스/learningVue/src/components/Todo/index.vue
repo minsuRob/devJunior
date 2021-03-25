@@ -7,7 +7,10 @@
       @addTodo="addTodo"
     >
     </TodoForm>
-    <TodoList v-bind:todoList="todoList"></TodoList>
+    <TodoList
+      v-bind:todoList="todoList"
+      @deleteTodo="deleteTodo"
+    ></TodoList>
   </div>
 </template>
 
@@ -52,6 +55,9 @@ export default {
       this.todoList = todoList.concat(newData);
       this.sequenceIncrement();
       this.inputClear();
+    },
+    deleteTodo(id) {
+      this.todoList = this.todoList.filter(v => v.id !== id);
     },
     sequenceIncrement() {
       this.sequence = this.sequence + 1;
