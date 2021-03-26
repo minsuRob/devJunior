@@ -1,22 +1,35 @@
 <template>
-  <div>
-    <div>To-Do List</div>
-    <TodoForm
-      v-bind:newTodo="newTodo"
-      @onChangeNewTodo="onChangeNewTodo"
-      @addTodo="addTodo"
-    >
-    </TodoForm>
-    <TodoList
-      v-bind:todoList="todoList"
-      v-bind:updateValue="updateValue"
-      @updateTodo="updateTodo"
-      @updateToggle="updateToggle"
-      @deleteTodo="deleteTodo"
-      @changeHandle="changeHandle"
-      @completeTodo="completeTodo"
-    ></TodoList>
-  </div>
+  <v-container class="grey lighten-5">
+    <v-row no-gutters>
+      <v-col
+        cols="12"
+        sm="6"
+      >
+        <v-card
+          class="custom-card"
+          outlined
+          tile
+        >
+          <v-card-title class="custom-title">TO DO LIST</v-card-title>
+          <TodoForm
+            v-bind:newTodo="newTodo"
+            @onChangeNewTodo="onChangeNewTodo"
+            @addTodo="addTodo"
+          >
+          </TodoForm>
+          <TodoList
+            v-bind:todoList="todoList"
+            v-bind:updateValue="updateValue"
+            @updateTodo="updateTodo"
+            @updateToggle="updateToggle"
+            @deleteTodo="deleteTodo"
+            @changeHandle="changeHandle"
+            @completeTodo="completeTodo"
+          ></TodoList>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -93,3 +106,14 @@ export default {
   },
 };
 </script>
+
+<style>
+  .custom-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #5962fd;
+  }
+  .custom-card {
+    background-color: #fafafa !important;
+  }
+</style>
