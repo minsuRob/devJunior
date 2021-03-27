@@ -16,13 +16,14 @@
           >
             {{item.todo}}
           </div>
-          <v-menu offset-y>
+          <v-menu data-app offset-y>
             <template v-slot:activator="{ on, attrs }">
-              <font-awesome-icon
-                :icon="moreIcon"
-                v-bind="attrs"
-                v-on="on"
-              />
+              <div v-bind="attrs" v-on="on">
+                <font-awesome-icon
+                  :icon="moreIcon"
+                  class="moreIcon"
+                />
+              </div>
             </template>
             <v-list>
               <v-list-item>
@@ -99,5 +100,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .moreIcon {
+    color: #afafaf;
   }
 </style>

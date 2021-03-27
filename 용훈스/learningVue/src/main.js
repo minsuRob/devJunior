@@ -17,7 +17,7 @@ library.add(fas);
 new Vue({
   el: '#app',
   router,
-  Vuetify,
+  vuetify: new Vuetify(),
   components: { App },
   template: '<App/>',
   theme: {
