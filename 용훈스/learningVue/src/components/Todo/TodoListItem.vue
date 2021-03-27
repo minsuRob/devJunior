@@ -1,7 +1,8 @@
 <template>
   <v-row no-gutters>
     <v-col
-      cols="12"
+      cols="11"
+      class="todo-item"
     >
       <v-card class="custom-todo-card mx-lg-auto">
         <div v-if="item.updateStatus" @keyup="onChangeUpdate">
@@ -86,13 +87,17 @@ export default {
     text-decoration-line: line-through;
   }
   .custom-todo-card {
-    box-shadow: 2px 2px 12px 7px #f1f1f1 !important;
+    box-shadow: 2px 2px 9px 1px #dadada !important;
+    background-color: #fff !important;
     margin: 8px 16px 8px 16px;
     padding: 20px 12px;
     text-align: left;
   }
+  .todo-item {
+    margin: 0 auto;
+  }
   .todo-title {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #000;
   }

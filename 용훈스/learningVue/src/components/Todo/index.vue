@@ -4,13 +4,17 @@
       <v-col
         cols="12"
         sm="6"
+        class="main-col"
       >
         <v-card
           class="custom-card"
           outlined
           tile
         >
-          <v-card-title class="custom-title">TO DO LIST</v-card-title>
+          <v-card-title class="custom-title">
+            <span class="custom-sub-title">TO DO</span>
+            <span>LIST</span>
+          </v-card-title>
           <TodoForm
             v-bind:newTodo="newTodo"
             @onChangeNewTodo="onChangeNewTodo"
@@ -108,12 +112,22 @@ export default {
 </script>
 
 <style>
+  .main-col {
+    margin: 0 auto;
+  }
   .custom-title {
+    flex-direction: column;
+    align-items: start !important;
+    margin-left: 12px;
     font-size: 2rem;
     font-weight: 700;
     color: #5962fd;
   }
+  .custom-sub-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
   .custom-card {
-    background-color: #fafafa !important;
+    background-color: #fdfdfd !important;
   }
 </style>

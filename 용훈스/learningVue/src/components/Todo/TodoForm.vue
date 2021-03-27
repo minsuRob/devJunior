@@ -1,11 +1,28 @@
 <template>
-  <div>
-    <input type="text" v-model="propNewTodo" @keyup="onChangeHandle">
-    <button type="button" @click="onAddHandle">추가</button>
-  </div>
+  <v-row no-gutters>
+    <v-col
+      cols="11"
+      class="todo-item"
+    >
+      <div class="todo-form">
+        <v-text-field
+          v-model="propNewTodo"
+          @keyup="onChangeHandle"
+          label="To Do"
+        ></v-text-field>
+        <font-awesome-icon
+          :icon="plusIcon"
+          class="plusIcon"
+          @click="onAddHandle"
+        />
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 export default {
   props: ['newTodo'],
   data() {
@@ -22,5 +39,24 @@ export default {
       this.propNewTodo = '';
     },
   },
+  computed: {
+    plusIcon() {
+      return faPlus;
+    },
+  },
 };
 </script>
+
+<style>
+  .todo-form {
+    display: flex;
+    align-items: center;
+  }
+  .plusIcon {
+    cursor: pointer;
+    color: #5962fd;
+  }
+  .plusIcon:hover {
+    opacity: 0.7;
+  }
+</style>
