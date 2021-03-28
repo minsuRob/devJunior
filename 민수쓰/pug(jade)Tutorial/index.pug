@@ -1,6 +1,7 @@
 doctype tranditional
 html(lang="en")
     head
+        link(rel="stylesheet" href="style.css")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -9,6 +10,7 @@ html(lang="en")
          zz zz 
          zz
     body 
+        p Body Text
         .display-box
             h1#pageTitle First Page Title 
             p.big-para. 
@@ -24,10 +26,13 @@ html(lang="en")
         - const myClasses = ["cls1", "cls2", "cls3"]
         div.myclass(class=myClasses)
                                             
+        
         - const myStyles = {"color" : "red", "background-color" : "blue"}
         div(style=myStyles)
+            p CSS text
         - const myAttrs = {"src" : "https://img.youtube.com/vi/8rB4L675f5M/mqdefault.jpg", "alt" : "This is my photo"}
         img&attributes(myAttrs)
 
         </br>
         input(type="text" disabled)
+
