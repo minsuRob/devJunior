@@ -10,6 +10,14 @@ html(lang="en")
          zz zz 
          zz
     body 
+
+        h1 Iterator Method 
+        //- const names = ["Minsu", "Robert", "Client", "Tom", "Jito"]
+        - const infos = {"Backend" : 97, "FrontEnd" : 98, "Fullstack" : 96}
+        for n, i in infos
+            p= n + " - " + i
+        else
+            strong No values are here!
         p Body Text
         .display-box
             h1#pageTitle First Page Title 
