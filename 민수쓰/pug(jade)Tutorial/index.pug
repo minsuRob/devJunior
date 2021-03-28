@@ -11,6 +11,17 @@ html(lang="en")
          zz
     body 
 
+    
+        h1 Conditon(if) Method
+        - let user = {name: "Domenic", loggedIn: false, lastLogin: 6}
+        if user.loggedIn 
+            p 
+                | Welcome back,
+                strong #{ user.name }
+        else 
+            a(href="/login") Login
+                 
+
         h1 Iterator Method 
         //- const names = ["Minsu", "Robert", "Client", "Tom", "Jito"]
         - const infos = {"Backend" : 97, "FrontEnd" : 98, "Fullstack" : 96}
