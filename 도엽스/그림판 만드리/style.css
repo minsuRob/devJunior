@@ -1,0 +1,8 @@
+main {
+  width: 300px;
+}
+.button-wrap {
+  display: grid;
+  /* 한 줄에 4개씩, 모두 동일한 비율 적용(1:1:1:1)*/
+  grid-template-columns: repeat(4, 1fr);
+}
