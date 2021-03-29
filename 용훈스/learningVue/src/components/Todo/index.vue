@@ -1,5 +1,5 @@
 <template>
-  <v-container class="lighten-5">
+  <v-container class="lighten-5 custom-container">
     <v-row no-gutters>
       <v-col
         cols="12"
@@ -15,12 +15,6 @@
             <span class="custom-sub-title">TO DO</span>
             <span>LIST</span>
           </v-card-title>
-          <TodoForm
-            v-bind:newTodo="newTodo"
-            @onChangeNewTodo="onChangeNewTodo"
-            @addTodo="addTodo"
-          >
-          </TodoForm>
           <TodoList
             v-bind:todoList="todoList"
             v-bind:updateValue="updateValue"
@@ -31,6 +25,12 @@
             @completeTodo="completeTodo"
           ></TodoList>
         </v-card>
+        <TodoForm
+          v-bind:newTodo="newTodo"
+          @onChangeNewTodo="onChangeNewTodo"
+          @addTodo="addTodo"
+        >
+        </TodoForm>
       </v-col>
     </v-row>
   </v-container>
@@ -112,6 +112,11 @@ export default {
 </script>
 
 <style>
+  .custom-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
   .main-col {
     margin: 0 auto;
   }
@@ -129,5 +134,7 @@ export default {
   }
   .custom-card {
     background-color: #fdfdfd !important;
+    border: 0 !important;
+    padding: 16px 12px 28px 12px;
   }
 </style>

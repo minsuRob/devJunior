@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="list-box">
     <TodoListItem
       v-for="item in todoList"
       v-bind:key="item.id"
@@ -44,3 +44,9 @@ export default {
   },
 };
 </script>
+
+<style>
+  .list-box {
+
+  }
+</style>
