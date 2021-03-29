@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <h1>test</h1>
     <router-link to="/todo">todo</router-link>
     <router-link to="/counter">counter</router-link>
   </div>
