@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 import { faPlus, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 export default {
@@ -36,6 +37,12 @@ export default {
     };
   },
   methods: {
+    ...mapMutations('TodoStore', [
+      'changeNewTodo'
+    ]),
+    ...mapActions('TodoStore', [
+      'onChangeNewTodo'
+    ]),
     onChangeHandle(e) {
       this.$emit('onChangeNewTodo', e.target.value);
     },
@@ -45,9 +52,12 @@ export default {
     },
   },
   computed: {
-    plusIcon() {
-      return faPlus;
-    },
+    ...mapState('TodoStore', {
+
+    }),
+    ...mapGetters('TodoStore', [
+      'getNewTodo',
+    ]),
     faPaperPlane() {
       return faPaperPlane;
     },
