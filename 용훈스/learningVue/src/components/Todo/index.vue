@@ -26,9 +26,9 @@
           ></TodoList>
         </v-card>
         <TodoForm
-          v-bind:newTodo="newTodo"
-          @onChangeNewTodo="onChangeNewTodo"
-          @addTodo="addTodo"
+          v-bind:newTodo="getNewTodo"
+          v-bind:onChangeNewTodo="onChangeNewTodo"
+          v-bind:onAddTodo="onAddTodo"
         >
         </TodoForm>
       </v-col>
@@ -37,8 +37,11 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import TodoForm from '@/components/Todo/TodoForm';
 import TodoList from '@/components/Todo/TodoList';
+
+const helper = createNamespacedHelpers('todo');
 
 export default {
   data() {
@@ -64,18 +67,11 @@ export default {
     TodoList,
   },
   methods: {
-    onChangeNewTodo(value) {
-      this.newTodo = value;
+    onChangeNewTodo(e) {
+      this.$store.dispatch('onChangeNewTodo', e.target.value);
     },
-    addTodo() {
-      const { todoList, sequence, newTodo } = this;
-      const newData = {
-        id: sequence + 1,
-        todo: newTodo,
-        updateStatus: false,
-        completionStatus: false,
-      };
-      this.todoList = todoList.concat(newData);
+    onAddTodo() {
+      this.$store.dispatch('onAddTodo');
       this.sequenceIncrement();
       this.inputClear();
     },
@@ -106,6 +102,11 @@ export default {
     },
     inputClear() {
       this.newTodo = '';
+    },
+  },
+  computed: {
+    getNewTodo() {
+      return this.$store.getters.getNewTodo;
     },
   },
 };

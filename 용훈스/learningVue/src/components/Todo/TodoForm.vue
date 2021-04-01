@@ -6,8 +6,8 @@
     >
       <div class="todo-form">
         <v-text-field
-          v-model="propNewTodo"
-          @keyup="onChangeHandle"
+          v-model="newTodo"
+          @keyup="(e) => onChangeNewTodo(e)"
           label="Add To Do"
           outlined
           clearable
@@ -16,7 +16,7 @@
             <font-awesome-icon
               :icon="faPaperPlane"
               class="faPaperPlane"
-              @click="onAddHandle"
+              @click="onAddTodo"
             />
           </template>
         </v-text-field>
@@ -26,38 +26,17 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
-import { faPlus, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 export default {
-  props: ['newTodo'],
-  data() {
-    return {
-      propNewTodo: this.newTodo,
-    };
+  props: {
+    newTodo: String,
+    onChangeNewTodo: Function,
+    onAddTodo: Function,
   },
-  methods: {
-    ...mapMutations('TodoStore', [
-      'changeNewTodo'
-    ]),
-    ...mapActions('TodoStore', [
-      'onChangeNewTodo'
-    ]),
-    onChangeHandle(e) {
-      this.$emit('onChangeNewTodo', e.target.value);
-    },
-    onAddHandle() {
-      this.$emit('addTodo');
-      this.propNewTodo = '';
-    },
+  data() {
   },
   computed: {
-    ...mapState('TodoStore', {
-
-    }),
-    ...mapGetters('TodoStore', [
-      'getNewTodo',
-    ]),
     faPaperPlane() {
       return faPaperPlane;
     },
