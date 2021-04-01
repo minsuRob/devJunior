@@ -18,7 +18,10 @@ const state = {
 const mutations = {
   changeNewTodo (state, value) {
     state.newTodo = value;
-  }
+  },
+  addTodo (state, todo) {
+    state.todoList = todo;
+  },
 }
 
 const actions = {
@@ -26,6 +29,16 @@ const actions = {
     commit('changeNewTodo', value)
     this.newTodo = value;
   },
+  onAddTodo({ state, commit }) {
+    const { todoList, sequence, newTodo } = state;
+    const newData = {
+      id: sequence + 1,
+      todo: newTodo,
+      updateStatus: false,
+      completionStatus: false,
+    };
+    commit('addTodo', todoList.concat(newData));
+  }
 }
 
 const getters = {
