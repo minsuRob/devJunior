@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import App from './App';
 import router from './router';
+import { counterStore } from './store/CounterStore';
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);
@@ -19,14 +20,5 @@ new Vue({
   vuetify: new Vuetify(),
   components: { App },
   template: '<App/>',
-  theme: {
-    themes: {
-      light: {
-        primary: '#5962fd',
-        secondary: '#b0bec5',
-        accent: '#8c9eff',
-        error: '#b71c1c',
-      },
-    },
-  },
+  store: counterStore,
 });
