@@ -25,12 +25,7 @@
             @completeTodo="completeTodo"
           ></TodoList>
         </v-card>
-        <TodoForm
-          v-bind:newTodo="getNewTodo"
-          v-bind:onChangeNewTodo="onChangeNewTodo"
-          v-bind:onAddTodo="onAddTodo"
-        >
-        </TodoForm>
+        <TodoForm></TodoForm>
       </v-col>
     </v-row>
   </v-container>
@@ -66,10 +61,8 @@ export default {
   },
   methods: {
     onChangeNewTodo(e) {
-      this.$store.dispatch('onChangeNewTodo', e.target.value);
     },
     onAddTodo() {
-      this.$store.dispatch('onAddTodo');
       this.sequenceIncrement();
       this.inputClear();
     },
@@ -100,11 +93,6 @@ export default {
     },
     inputClear() {
       this.newTodo = '';
-    },
-  },
-  computed: {
-    getNewTodo() {
-      return this.$store.getters.getNewTodo;
     },
   },
 };

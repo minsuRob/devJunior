@@ -5,9 +5,9 @@
       class="todo-item"
     >
       <div class="todo-form">
+        {{ getNewTodo }}
         <v-text-field
-          v-model="newTodo"
-          @keyup="(e) => onChangeNewTodo(e)"
+          @keyup="(e) => changeNewTodo(e)"
           label="Add To Do"
           outlined
           clearable
@@ -16,7 +16,7 @@
             <font-awesome-icon
               :icon="faPaperPlane"
               class="faPaperPlane"
-              @click="onAddTodo"
+              @click="addTodo"
             />
           </template>
         </v-text-field>
@@ -26,17 +26,25 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 export default {
-  props: {
-    newTodo: String,
-    onChangeNewTodo: Function,
-    onAddTodo: Function,
-  },
   data() {
+    return {
+
+    }
+  },
+  methods: {
+    ...mapMutations([
+      'changeNewTodo',
+      'addTodo',
+    ]),
   },
   computed: {
+    ...mapGetters([
+      'getNewTodo'
+    ]),
     faPaperPlane() {
       return faPaperPlane;
     },
