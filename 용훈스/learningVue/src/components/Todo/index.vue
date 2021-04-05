@@ -41,8 +41,6 @@ import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import TodoForm from '@/components/Todo/TodoForm';
 import TodoList from '@/components/Todo/TodoList';
 
-const helper = createNamespacedHelpers('todo');
-
 export default {
   data() {
     return {

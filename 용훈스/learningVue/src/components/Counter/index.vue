@@ -1,12 +1,13 @@
 <template>
   <div>
-    <p>{{ number }}</p>
-    <button v-on:click="onIncrease">증가</button>
-    <button v-on:click="onDecrease">감소</button>
+    <p>{{ getNumber }}</p>
+    <button v-on:click="increase">증가</button>
+    <button v-on:click="decrease">감소</button>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 export default {
   data() {
     return {
@@ -14,12 +15,15 @@ export default {
     };
   },
   methods: {
-    onIncrease() {
-      this.number = this.number + 1;
-    },
-    onDecrease() {
-      this.number = this.number - 1;
-    },
+    ...mapMutations([
+      'increase',
+      'decrease',
+    ]),
+  },
+  computed: {
+    ...mapGetters([
+      'getNumber'
+    ]),
   },
 };
 </script>
