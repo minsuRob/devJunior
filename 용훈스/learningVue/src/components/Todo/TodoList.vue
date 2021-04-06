@@ -1,52 +1,25 @@
 <template>
   <div class="list-box">
     <TodoListItem
-      v-for="item in todoList"
+      v-for="item in getTodoList"
       v-bind:key="item.id"
       v-bind:item="item"
-      v-bind:updateValue="updateValue"
-      @deleteTodo="deleteTodo"
-      @updateToggle="updateToggle"
-      @updateHandle="updateHandle"
-      @changeHandle="changeHandle"
-      @completeTodo="completeTodo"
     ></TodoListItem>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import TodoListItem from '@/components/Todo/TodoListItem';
 
 export default {
   components: {
     TodoListItem,
   },
-  props: {
-    todoList: Array,
-    updateValue: String,
-  },
-  methods: {
-    updateHandle(id) {
-      this.$emit('updateTodo', id);
-    },
-    updateToggle(id) {
-      this.$emit('updateToggle', id);
-    },
-    deleteTodo(id) {
-      this.$emit('deleteTodo', id);
-    },
-    changeHandle(value) {
-      this.$emit('changeHandle', value);
-    },
-    completeTodo(id) {
-      this.$emit('completeTodo', id);
-    },
-  },
+  computed: {
+    ...mapGetters([
+      'getTodoList'
+    ]),
+  }
 };
 </script>
-
-<style>
-  .list-box {
-
-  }
-</style>

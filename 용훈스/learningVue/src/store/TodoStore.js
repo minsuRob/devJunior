@@ -20,10 +20,12 @@ export const todoStore = new Vuex.Store({
       completionStatus: false,
     }],
   },
+
   mutations: {
     changeNewTodo (state, value) {
       state.newTodo = value;
     },
+
     addTodo (state, todo) {
       const { todoList, sequence, newTodo } = state;
       const newData = {
@@ -33,9 +35,47 @@ export const todoStore = new Vuex.Store({
         completionStatus: false,
       };
       state.todoList = todoList.concat(newData);
+      state.newTodo = '';
+      state.sequence = state.sequence++;
+    },
+
+    deleteTodo(state, id) {
+      state.todoList = state.todoList.filter(v => v.id !== id);
+    },
+
+    updateToggle(state, id) {
+      state.updateValue = state.todoList.find(v => v.id === id).todo;
+      state.todoList = state.todoList.map(v =>
+        (v.id === id ? { ...v, updateStatus: !v.updateStatus } : v),
+      );
+    },
+
+    updateChangeHandle(state, value) {
+      state.updateValue = value;
+    },
+
+    updateTodo(state, id) {
+      state.todoList = state.todoList.map(v =>
+        (v.id === id ? { ...v, todo: state.updateValue, updateStatus: !v.updateStatus } : v),
+      );
+    },
+
+    completeTodo(state, id) {
+      state.todoList = state.todoList.map(v =>
+        (v.id === id ? { ...v, completionStatus: !v.completionStatus } : v),
+      );
     },
   },
+
   getters: {
+    getTodoList: (state) => {
+      return state.todoList;
+    },
+
+    getUpdateValue: (state) => {
+      return state.updateValue;
+    },
+
     getNewTodo: (state) => {
       return state.newTodo;
     }

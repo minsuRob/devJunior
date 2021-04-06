@@ -5,8 +5,8 @@
       class="todo-item"
     >
       <v-card class="custom-todo-card mx-lg-auto">
-        <div v-if="item.updateStatus" @keyup="onChangeUpdate">
-          <input type="text" v-bind:value="updateValue">
+        <div v-if="item.updateStatus">
+          <input type="text" v-model="updateVal">
           <button @click="() => onUpdateToggle(item.id)">취소</button>
           <button @click="() => onUpdateHandle(item.id)">수정</button>
         </div>
@@ -51,30 +51,34 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 export default {
   props: {
     item: Object,
-    updateValue: String,
   },
   data() {
     return {
     };
   },
   methods: {
-    onUpdateHandle(id) {
-      this.$emit('updateHandle', id);
-    },
     onUpdateToggle(id) {
-      this.$emit('updateToggle', id);
+      this.$store.commit('updateToggle', id);
     },
-    onChangeUpdate(e) {
-      this.$emit('changeHandle', e.target.value);
+    onUpdateHandle(id) {
+      this.$store.commit('updateTodo', id);
     },
     onDeleteHandle(id) {
-      this.$emit('deleteTodo', id);
+      this.$store.commit('deleteTodo', id);
     },
     onCheckHandle(id) {
-      this.$emit('completeTodo', id);
+      this.$store.commit('completeTodo', id);
     },
   },
   computed: {
+    updateVal: {
+      get() {
+        return this.$store.state.updateValue;
+      },
+      set(value) {
+        this.$store.commit('updateChangeHandle', value);
+      }
+    },
     moreIcon() {
       return faEllipsisV;
     },

@@ -15,15 +15,7 @@
             <span class="custom-sub-title">TO DO</span>
             <span>LIST</span>
           </v-card-title>
-          <TodoList
-            v-bind:todoList="todoList"
-            v-bind:updateValue="updateValue"
-            @updateTodo="updateTodo"
-            @updateToggle="updateToggle"
-            @deleteTodo="deleteTodo"
-            @changeHandle="changeHandle"
-            @completeTodo="completeTodo"
-          ></TodoList>
+          <TodoList></TodoList>
         </v-card>
         <TodoForm></TodoForm>
       </v-col>
@@ -32,68 +24,16 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import TodoForm from '@/components/Todo/TodoForm';
 import TodoList from '@/components/Todo/TodoList';
 
 export default {
   data() {
-    return {
-      newTodo: '',
-      sequence: 2,
-      updateValue: '',
-      todoList: [{
-        id: 0,
-        todo: '문화콘텐츠 과제 제출',
-        updateStatus: false,
-        completionStatus: false,
-      }, {
-        id: 1,
-        todo: '현대사회와 윤리 퀴즈 제출',
-        updateStatus: false,
-        completionStatus: false,
-      }],
-    };
+    return {};
   },
   components: {
     TodoForm,
     TodoList,
-  },
-  methods: {
-    onChangeNewTodo(e) {
-    },
-    onAddTodo() {
-      this.sequenceIncrement();
-      this.inputClear();
-    },
-    deleteTodo(id) {
-      this.todoList = this.todoList.filter(v => v.id !== id);
-    },
-    updateToggle(id) {
-      this.updateValue = this.todoList.find(v => v.id === id).todo;
-      this.todoList = this.todoList.map(v =>
-        (v.id === id ? { ...v, updateStatus: !v.updateStatus } : v),
-      );
-    },
-    updateTodo(id) {
-      this.todoList = this.todoList.map(v =>
-        (v.id === id ? { ...v, todo: this.updateValue, updateStatus: !v.updateStatus } : v),
-      );
-    },
-    completeTodo(id) {
-      this.todoList = this.todoList.map(v =>
-        (v.id === id ? { ...v, completionStatus: !v.completionStatus } : v),
-      );
-    },
-    changeHandle(value) {
-      this.updateValue = value;
-    },
-    sequenceIncrement() {
-      this.sequence = this.sequence + 1;
-    },
-    inputClear() {
-      this.newTodo = '';
-    },
   },
 };
 </script>

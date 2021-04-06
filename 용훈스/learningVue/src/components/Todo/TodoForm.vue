@@ -5,9 +5,8 @@
       class="todo-item"
     >
       <div class="todo-form">
-        {{ getNewTodo }}
         <v-text-field
-          @keyup="(e) => changeNewTodo(e)"
+          v-model="newTodo"
           label="Add To Do"
           outlined
           clearable
@@ -26,25 +25,27 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex';
+import { mapMutations } from 'vuex';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 export default {
   data() {
-    return {
-
-    }
+    return {}
   },
   methods: {
     ...mapMutations([
-      'changeNewTodo',
       'addTodo',
     ]),
   },
   computed: {
-    ...mapGetters([
-      'getNewTodo'
-    ]),
+    newTodo: {
+      get() {
+        return this.$store.state.newTodo;
+      },
+      set(value) {
+        this.$store.commit('changeNewTodo', value);
+      }
+    },
     faPaperPlane() {
       return faPaperPlane;
     },
