@@ -14,6 +14,7 @@
           <v-card-title class="custom-title">
             <span class="custom-sub-title">TO DO</span>
             <span>LIST</span>
+            <div @click="asyncTest">test</div>
           </v-card-title>
           <TodoList></TodoList>
         </v-card>
@@ -30,6 +31,11 @@ import TodoList from '@/components/Todo/TodoList';
 export default {
   data() {
     return {};
+  },
+  methods: {
+    asyncTest() {
+      this.$store.commit('getData');
+    }
   },
   components: {
     TodoForm,

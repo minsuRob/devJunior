@@ -46,6 +46,7 @@
 </template>
 
 <script>
+  import { mapMutations } from "vuex";
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 export default {
@@ -57,18 +58,12 @@ export default {
     };
   },
   methods: {
-    onUpdateToggle(id) {
-      this.$store.commit('updateToggle', id);
-    },
-    onUpdateHandle(id) {
-      this.$store.commit('updateTodo', id);
-    },
-    onDeleteHandle(id) {
-      this.$store.commit('deleteTodo', id);
-    },
-    onCheckHandle(id) {
-      this.$store.commit('completeTodo', id);
-    },
+    ...mapMutations({
+      onUpdateToggle: "updateToggle",
+      onUpdateHandle: "updateTodo",
+      onDeleteHandle: "deleteTodo",
+      onCheckHandle: "completeTodo",
+    })
   },
   computed: {
     updateVal: {

@@ -36,7 +36,7 @@ export const todoStore = new Vuex.Store({
       };
       state.todoList = todoList.concat(newData);
       state.newTodo = '';
-      state.sequence = state.sequence++;
+      state.sequence = state.sequence + 1;
     },
 
     deleteTodo(state, id) {
@@ -65,6 +65,13 @@ export const todoStore = new Vuex.Store({
         (v.id === id ? { ...v, completionStatus: !v.completionStatus } : v),
       );
     },
+  },
+
+  actions: {
+    getData: async () => {
+      const data = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+      console.log(data);
+    }
   },
 
   getters: {
