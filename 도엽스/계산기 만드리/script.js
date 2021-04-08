@@ -1,7 +1,6 @@
 class Calculator {
   constructor(displayElement) {
     this.displayElement = displayElement;
-    this.displayContent = "";
     this.operatorCheck = true; // 연산자 선택 여부 저장
     this.equalsCheck = false; // = 버튼 클릭 여부 관리
     this.clear();
@@ -15,10 +14,11 @@ class Calculator {
     }
     this.operatorCheck = false; // 숫자 입력 시 false
   }
-  appenOperator(operator) {
+  appendOperator(operator) {
     if (this.operatorCheck) return false; // operatorCheck값이 true면 함수 빠져나가기
+    if (this.equalsCheck) this.equalsCheck = false;
     this.displayContent += operator;
-    this.operatorCheck = true; // 연산자 입력 시 true
+    return (this.operatorCheck = true); // 연산자 입력 시 true
   }
   updateDisplay() {
     this.displayElement.value = this.displayContent;
@@ -45,16 +45,14 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     switch (button.dataset.type) {
       case "operator":
-        console.log("operator");
-        calculator.appenOperator(button.innerText);
-        calculator.updateDisplay();
+        if (calculator.appendOperator(button.innerText)) {
+          calculator.updateDisplay();
+        }
         break;
       case "ac":
-        console.log("ac");
         calculator.clear();
         break;
       case "equals":
-        console.log("equals");
         calculator.compute();
         calculator.updateDisplay();
         break;
