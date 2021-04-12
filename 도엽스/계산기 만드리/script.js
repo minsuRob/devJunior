@@ -33,6 +33,7 @@ class Calculator {
     this.displayContent = eval(
       this.displayContent.replace("\u00D7", "*").replace("\u00F7", "/") // 자바스크립트에서 해석할 수 있는 * / 로 변경
     );
+    this.equalsCheck = true;
   }
 }
 
