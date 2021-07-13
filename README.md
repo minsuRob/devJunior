@@ -3,7 +3,7 @@
 # [MardDown을 공부해주세요 팡운대생들(링크클릭!)](https://heropy.blog/2017/09/30/markdown/)
 junior들의 처절한 공부일지
 팡운친구들 열심히 해보자
-Commit
+Please
 - 이민수
   - [PHP 문법 공부](https://opentutorials.org/course/3018/233 ) 
   - [Vue.js 문법 공부](https://www.zooo.kr/fxbbs/f_view.php?i_code=program&CATEGORY=49&admin_mode=&PAGE=2&i_id=258&i_key=&i_value=&i_order=&i_order_exec=)
